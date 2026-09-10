@@ -5,18 +5,18 @@ import Blog from './pages/Blog';
 import Admin from './pages/Admin';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('portfolio');
+  const [currentTab, setCurrentTab] = useState('portfolio');
 
   return (
-    <div className="bg-neutral-950 min-h-screen text-white font-sans">
-      {/* Menú de navegación superior */}
-      <Navbar setCurrentPage={setCurrentPage} />
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
+      {/* Barra de Navegación superior */}
+      <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
-      {/* Renderizado condicional según la pestaña seleccionada */}
-      <main>
-        {currentPage === 'portfolio' && <Portfolio />}
-        {currentPage === 'blog' && <Blog />}
-        {currentPage === 'admin' && <Admin />}
+      {/* Contenido dinámico según la pestaña seleccionada */}
+      <main className="flex-grow">
+        {currentTab === 'portfolio' && <Portfolio />}
+        {currentTab === 'blog' && <Blog />}
+        {currentTab === 'admin' && <Admin />}
       </main>
     </div>
   );
