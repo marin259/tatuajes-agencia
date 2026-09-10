@@ -15,10 +15,11 @@ export default function App() {
 
       {/* Contenido dinámico según la pestaña seleccionada */}
       <main className="flex-grow">
-        {currentTab === 'portfolio' && <Portfolio />}
+       {currentTab === 'portfolio' && <Portfolio setCurrentTab={setCurrentTab} />}
         {currentTab === 'blog' && <Blog />}
         {currentTab === 'admin' && <Admin />}
         {currentTab === 'booking' && <Booking />}
+        
       </main>
     </div>
   );
