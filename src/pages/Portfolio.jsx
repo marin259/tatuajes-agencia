@@ -97,8 +97,8 @@ export default function Portfolio() {
               key={tattoo.id}
               className="group relative bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-700 transition-all duration-300 shadow-xl"
             >
-              {/* Imagen con zoom al pasar el cursor */}
-              <div className="aspect-[4/5] w-full overflow-hidden bg-neutral-950 relative">
+              {/* Imagen con altura fija y control de desbordamiento */}
+              <div className="h-72 w-full overflow-hidden bg-neutral-950 relative">
                 <img 
                   src={tattoo.image} 
                   alt={tattoo.title}
