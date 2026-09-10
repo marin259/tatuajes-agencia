@@ -1,23 +1,49 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Portfolio from './pages/Portfolio';
-import Blog from './pages/Blog';
-import Admin from './pages/Admin';
+import React from 'react';
 
-export default function App() {
-  const [currentTab, setCurrentTab] = useState('portfolio');
-
+export default function Navbar({ currentTab, setCurrentTab }) {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
-      {/* Barra de Navegación superior */}
-      <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+    <header className="bg-neutral-900 border-b border-neutral-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <span className="text-white font-black tracking-wider text-sm sm:text-base">
+        INK & ART // AGENCIA
+      </span>
 
-      {/* Contenido dinámico según la pestaña seleccionada */}
-      <main className="flex-grow">
-        {currentTab === 'portfolio' && <Portfolio />}
-        {currentTab === 'blog' && <Blog />}
-        {currentTab === 'admin' && <Admin />}
-      </main>
-    </div>
+      <nav className="flex flex-wrap justify-center gap-2">
+        <button
+          onClick={() => setCurrentTab('portfolio')}
+          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
+            currentTab === 'portfolio' ? 'bg-red-600 text-white' : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
+          }`}
+        >
+          Portafolio
+        </button>
+
+        <button
+          onClick={() => setCurrentTab('blog')}
+          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
+            currentTab === 'blog' ? 'bg-red-600 text-white' : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
+          }`}
+        >
+          Blog & Cuidados
+        </button>
+
+        <button
+          onClick={() => setCurrentTab('booking')}
+          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
+            currentTab === 'booking' ? 'bg-red-600 text-white' : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
+          }`}
+        >
+          Reservar Cita
+        </button>
+
+        <button
+          onClick={() => setCurrentTab('admin')}
+          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
+            currentTab === 'admin' ? 'bg-red-600 text-white' : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
+          }`}
+        >
+          Admin Panel
+        </button>
+      </nav>
+    </header>
   );
 }
