@@ -5,7 +5,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
   const handleNavClick = (tab) => {
     setCurrentTab(tab);
-    setIsOpen(false); // Cierra el menú en móvil al hacer clic
+    setIsOpen(false);
   };
 
   return (
@@ -14,7 +14,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
         
         {/* Logo */}
         <div 
-          onClick={() => handleNavClick('portfolio')} 
+          onClick={() => handleNavClick('home')} 
           className="text-white font-bold tracking-wider cursor-pointer text-lg"
         >
           INK & ART // AGENCIA
@@ -35,8 +35,19 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           </svg>
         </button>
 
-        {/* Navegación para Escritorio (Oculta en móvil) */}
+        {/* Navegación para Escritorio */}
         <nav className="hidden md:flex items-center gap-2">
+          <button
+            onClick={() => handleNavClick('home')}
+            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'home'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+            }`}
+          >
+            Inicio
+          </button>
+
           <button
             onClick={() => handleNavClick('portfolio')}
             className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
@@ -84,9 +95,20 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
       </div>
 
-      {/* Menú desplegable para Móvil (Se muestra al hacer clic en el ícono) */}
+      {/* Menú desplegable para Móvil */}
       {isOpen && (
         <nav className="md:hidden mt-4 pt-4 border-t border-neutral-800 flex flex-col gap-2">
+          <button
+            onClick={() => handleNavClick('home')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+              currentTab === 'home'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
+          >
+            Inicio
+          </button>
+
           <button
             onClick={() => handleNavClick('portfolio')}
             className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${

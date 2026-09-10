@@ -47,7 +47,7 @@ const tattooItems = [
 
 const categories = ['Todos', 'Realismo', 'Blackwork', 'Fine Line', 'Neo Tradicional'];
 
-export default function Portfolio({ setCurrentTab }) {
+export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Todos');
 
   const filteredTattoos = activeCategory === 'Todos'
@@ -55,48 +55,19 @@ export default function Portfolio({ setCurrentTab }) {
     : tattooItems.filter(item => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 pb-16">
-      
-    {/* Banner / Hero Principal */}
-      <div className="relative bg-neutral-900 border-b border-neutral-800 overflow-hidden mb-12">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1600&auto=format&fit=crop" 
-            alt="Tattoo Studio Background" 
-            className="w-full h-full object-cover object-center opacity-20 scale-105 filter grayscale contrast-125"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent"></div>
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 sm:py-28 text-center flex flex-col items-center">
-          <span className="text-red-500 text-xs sm:text-sm font-bold tracking-widest uppercase bg-red-950/60 px-4 py-1.5 rounded-full border border-red-900/60 shadow-lg">
-            Estudio Residente & Artistas Guest
-          </span>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white leading-tight">
-            ARTE EXCLUSIVO EN <span className="text-red-600">PIEL Y TINTA</span>
-          </h1>
-          <p className="text-neutral-300 mt-4 max-w-xl mx-auto text-sm sm:text-base font-normal">
-            Diseños únicos y personalizados. Llevamos tu historia al siguiente nivel con los más altos estándares de calidad y seguridad.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => setCurrentTab && setCurrentTab('booking')}
-              className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-red-900/40 transition-all cursor-pointer text-sm tracking-wide"
-            >
-              Reservar Cita Ahora &rarr;
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Encabezado de la Galería */}
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+        {/* Encabezado de la Sección */}
+        <div className="text-center mb-12">
+          <span className="text-red-600 text-xs font-bold tracking-widest uppercase bg-red-950/40 px-3 py-1 rounded-full border border-red-900/50">
+            Galería Exclusiva
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-4 text-white">
             NUESTRO PORTAFOLIO
-          </h2>
-          <p className="text-neutral-400 mt-1 text-sm">
-            Explora las piezas maestras de nuestros artistas.
+          </h1>
+          <p className="text-neutral-400 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
+            Explora las piezas maestras creadas por nuestros artistas residentes. Cada trazo cuenta una historia única.
           </p>
         </div>
 
