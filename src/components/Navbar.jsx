@@ -44,6 +44,17 @@ export default function Navbar({ currentTab, setCurrentTab }) {
         >
           Admin Panel
         </button>
+
+        <button 
+  onClick={() => setCurrentTab('booking')}
+  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${
+    currentTab === 'booking' 
+      ? 'bg-red-600 text-white' 
+      : 'text-neutral-300 hover:text-white hover:bg-neutral-900'
+  }`}
+>
+  Reservar Cita
+</button>
       </nav>
       
     </header>
