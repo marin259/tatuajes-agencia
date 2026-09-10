@@ -57,23 +57,23 @@ export default function Portfolio({ setCurrentTab }) {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 pb-16">
       
-      {/* Banner / Hero Principal */}
+    {/* Banner / Hero Principal */}
       <div className="relative bg-neutral-900 border-b border-neutral-800 overflow-hidden mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1600&auto=format&fit=crop" 
             alt="Tattoo Studio Background" 
-            className="w-full h-full object-cover object-center opacity-25 scale-105 filter grayscale contrast-125"
+            className="w-full h-full object-cover object-center opacity-20 scale-105 filter grayscale contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 sm:py-28 text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 sm:py-28 text-center flex flex-col items-center">
           <span className="text-red-500 text-xs sm:text-sm font-bold tracking-widest uppercase bg-red-950/60 px-4 py-1.5 rounded-full border border-red-900/60 shadow-lg">
             Estudio Residente & Artistas Guest
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight mt-6 text-white max-w-3xl leading-none">
-            ARTE EXCLUSIVO EN <span className="text-red-600">PIEL Y Tinta</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white leading-tight">
+            ARTE EXCLUSIVO EN <span className="text-red-600">PIEL Y TINTA</span>
           </h1>
           <p className="text-neutral-300 mt-4 max-w-xl mx-auto text-sm sm:text-base font-normal">
             Diseños únicos y personalizados. Llevamos tu historia al siguiente nivel con los más altos estándares de calidad y seguridad.
@@ -88,7 +88,6 @@ export default function Portfolio({ setCurrentTab }) {
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado de la Galería */}
