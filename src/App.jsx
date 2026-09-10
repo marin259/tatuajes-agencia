@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Footer from './components/Footer'; // <--- Importa el footer
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
@@ -23,6 +23,9 @@ export default function App() {
         {currentTab === 'admin' && <Admin />}
         {currentTab === 'booking' && <Booking />}
       </main>
+
+      {/* Pie de página global */}
+      <Footer setCurrentTab={setCurrentTab} />
     </div>
   );
 }
