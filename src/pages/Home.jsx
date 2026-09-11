@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// Tus imágenes reales configuradas para el carrusel de fondo
 const BACKGROUND_IMAGES = [
   "https://i.ibb.co/sp6Z1c5y/Whats-App-Image-2026-09-10-at-7-58-53-PM.jpg",
   "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg",
@@ -11,7 +10,6 @@ const BACKGROUND_IMAGES = [
 export default function Home({ setCurrentTab }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Efecto para rotar las imágenes del fondo automáticamente cada 5 segundos
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
@@ -25,33 +23,39 @@ export default function Home({ setCurrentTab }) {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 pb-16">
       
-      {/* Banner / Hero Principal con Carrusel */}
-      <div className="relative bg-neutral-900 border-b border-neutral-800 overflow-hidden mb-12">
-        <div className="absolute inset-0 z-0">
-          
-          {/* Mapeo de tus imágenes con desvanecimiento (fade) */}
+      {/* Banner / Hero Principal con Carrusel a todo color */}
+      <div className="relative bg-neutral-950 border-b border-neutral-800 overflow-hidden mb-12 min-h-[550px] flex items-center justify-center">
+        
+        {/* Contenedor de las imágenes de fondo */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
           {BACKGROUND_IMAGES.map((img, index) => (
             <div
               key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 filter grayscale contrast-125 ${
-                index === currentImageIndex ? 'opacity-25' : 'opacity-0'
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? 'opacity-40 scale-100' : 'opacity-0 scale-105'
               }`}
-              style={{ backgroundImage: `url(${img})` }}
+              style={{ 
+                backgroundImage: `url(${img})`,
+                transition: 'opacity 1s ease-in-out, transform 5s ease-out'
+              }}
             />
           ))}
 
-          {/* Degradado oscuro para asegurar la legibilidad del texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent"></div>
+          {/* Degradado lateral suave para que las letras resalten al centro pero los lados muestren el arte */}
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/70 to-neutral-950"></div>
+          {/* Degradado vertical sutil */}
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/80"></div>
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center flex flex-col items-center">
-          <span className="text-red-500 text-xs sm:text-sm font-bold tracking-widest uppercase bg-red-950/60 px-4 py-1.5 rounded-full border border-red-900/60 shadow-lg">
+        {/* Contenido Principal */}
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center flex flex-col items-center">
+          <span className="text-red-400 text-xs sm:text-sm font-bold tracking-widest uppercase bg-neutral-900/80 px-4 py-1.5 rounded-full border border-red-900/50 shadow-lg backdrop-blur-sm">
             Estudio Residente & Artistas Guest
           </span>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white leading-tight">
-            ARTE EXCLUSIVO EN <span className="text-red-600">PIEL Y TINTA</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white drop-shadow-md leading-tight">
+            ARTE EXCLUSIVO EN <span className="text-red-500">PIEL Y TINTA</span>
           </h1>
-          <p className="text-neutral-300 mt-4 max-w-xl mx-auto text-sm sm:text-base font-normal">
+          <p className="text-neutral-200 mt-4 max-w-xl mx-auto text-sm sm:text-base font-medium drop-shadow">
             Diseños únicos y personalizados. Llevamos tu historia al siguiente nivel con los más altos estándares de calidad y seguridad.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -63,7 +67,7 @@ export default function Home({ setCurrentTab }) {
             </button>
             <button
               onClick={() => setCurrentTab('portfolio')}
-              className="bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-bold px-8 py-3.5 rounded-xl transition-all cursor-pointer text-sm tracking-wide"
+              className="bg-neutral-900/90 hover:bg-neutral-800 text-neutral-100 border border-neutral-700 font-bold px-8 py-3.5 rounded-xl backdrop-blur-sm transition-all cursor-pointer text-sm tracking-wide"
             >
               Ver Portafolio
             </button>
@@ -76,7 +80,7 @@ export default function Home({ setCurrentTab }) {
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  index === currentImageIndex ? 'bg-red-600 w-6' : 'bg-neutral-700 w-2 hover:bg-neutral-500'
+                  index === currentImageIndex ? 'bg-red-500 w-6 shadow-md' : 'bg-neutral-700 w-2 hover:bg-neutral-500'
                 }`}
                 aria-label={`Cambiar a slide ${index + 1}`}
               />
