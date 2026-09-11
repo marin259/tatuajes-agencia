@@ -23,8 +23,8 @@ export default function Home({ setCurrentTab }) {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 pb-16">
       
-      {/* Banner / Hero Principal con Carrusel a todo color */}
-      <div className="relative bg-neutral-950 border-b border-neutral-800 overflow-hidden mb-12 min-h-[550px] flex items-center justify-center">
+      {/* Banner / Hero Principal con Carrusel de Fondo Visible */}
+      <div className="relative bg-neutral-950 border-b border-neutral-800 overflow-hidden mb-12 min-h-[600px] flex items-center justify-center">
         
         {/* Contenedor de las imágenes de fondo */}
         <div className="absolute inset-0 z-0 flex items-center justify-center">
@@ -32,7 +32,7 @@ export default function Home({ setCurrentTab }) {
             <div
               key={index}
               className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-                index === currentImageIndex ? 'opacity-40 scale-100' : 'opacity-0 scale-105'
+                index === currentImageIndex ? 'opacity-65 scale-100' : 'opacity-0 scale-105'
               }`}
               style={{ 
                 backgroundImage: `url(${img})`,
@@ -41,15 +41,13 @@ export default function Home({ setCurrentTab }) {
             />
           ))}
 
-          {/* Degradado lateral suave para que las letras resalten al centro pero los lados muestren el arte */}
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/70 to-neutral-950"></div>
-          {/* Degradado vertical sutil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/80"></div>
+          {/* Capa oscura equilibrada para que las fotos se aprecien nítidas pero el texto resalte perfecto */}
+          <div className="absolute inset-0 bg-neutral-950/60 backdrop-blur-[1px]"></div>
         </div>
 
         {/* Contenido Principal */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center flex flex-col items-center">
-          <span className="text-red-400 text-xs sm:text-sm font-bold tracking-widest uppercase bg-neutral-900/80 px-4 py-1.5 rounded-full border border-red-900/50 shadow-lg backdrop-blur-sm">
+          <span className="text-red-400 text-xs sm:text-sm font-bold tracking-widest uppercase bg-neutral-900/90 px-4 py-1.5 rounded-full border border-red-900/50 shadow-lg">
             Estudio Residente & Artistas Guest
           </span>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white drop-shadow-md leading-tight">
