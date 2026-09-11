@@ -14,16 +14,24 @@ export default function Navbar({ currentTab, setCurrentTab }) {
     <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-3">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* LOGO ORIGINAL SIN CORTES FORZADOS */}
+        {/* LOGO CIRCULAR + NOMBRE DE LA MARCA */}
         <div 
           onClick={() => handleNavClick('home')} 
-          className="flex items-center cursor-pointer group py-1"
+          className="flex items-center gap-3 cursor-pointer group py-1"
         >
           <img 
             src={LOGO_URL} 
             alt="ASU_ARTATTOO Logo" 
-            className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border border-red-600/60 shadow-lg group-hover:scale-105 transition-transform bg-neutral-900"
           />
+          <div className="flex flex-col">
+            <span className="text-white font-black tracking-widest text-sm sm:text-base group-hover:text-red-500 transition-colors">
+              ASU_ARTATTOO
+            </span>
+            <span className="text-[10px] text-neutral-400 tracking-wider uppercase font-semibold">
+              Tattoo Studio
+            </span>
+          </div>
         </div>
 
         {/* Botón de Hamburguesa para Móvil */}
