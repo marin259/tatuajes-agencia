@@ -11,10 +11,10 @@ export default function Navbar({ currentTab, setCurrentTab }) {
   };
 
   return (
-    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-2.5">
+    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-2">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* SOLO EL LOGO MÁS GRANDE */}
+        {/* SOLO EL LOGO, SIN BORDES, SIN FONDOS, MÁS GRANDE */}
         <div 
           onClick={() => handleNavClick('home')} 
           className="cursor-pointer group flex items-center"
@@ -22,7 +22,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           <img 
             src={LOGO_URL} 
             alt="ASU_ARTATTOO Logo" 
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-red-600/70 shadow-lg group-hover:scale-105 transition-transform bg-neutral-900"
+            className="w-16 h-16 sm:w-20 sm:h-20 object-contain transition-transform group-hover:scale-105"
           />
         </div>
 
