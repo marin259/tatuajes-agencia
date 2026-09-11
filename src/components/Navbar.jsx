@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-const LOGO_URL = "https://i.ibb.co/cXrSd5V4/logo-png.png";
-
 export default function Navbar({ currentTab, setCurrentTab }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -11,19 +9,15 @@ export default function Navbar({ currentTab, setCurrentTab }) {
   };
 
   return (
-    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-3">
+    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* LOGO MUCHO MÁS GRANDE Y LIMPIO */}
+        {/* ESPACIO VACÍO O MARCA DE TEXTO SIMPLE */}
         <div 
           onClick={() => handleNavClick('home')} 
-          className="cursor-pointer group flex items-center py-1"
+          className="cursor-pointer text-white font-bold text-lg tracking-wider"
         >
-          <img 
-            src={LOGO_URL} 
-            alt="ASU_ARTATTOO Logo" 
-            className="w-24 h-24 sm:w-28 sm:h-28 object-contain transition-transform group-hover:scale-105"
-          />
+          ASU_ARTATTOO
         </div>
 
         {/* Botón de Hamburguesa para Móvil */}
