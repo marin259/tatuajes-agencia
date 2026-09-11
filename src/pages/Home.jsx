@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-// Lista de imágenes para el carrusel de fondo (puedes reemplazar estas URLs con tus propias fotos en la nube)
+// Tus imágenes reales configuradas para el carrusel de fondo
 const BACKGROUND_IMAGES = [
-  "https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1600&auto=format&fit=crop", // Estudio / Tatuador
-  "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1600&auto=format&fit=crop", // Tatuaje en proceso
-  "https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1600&auto=format&fit=crop"    // Ambiente del estudio
+  "https://i.ibb.co/sp6Z1c5y/Whats-App-Image-2026-09-10-at-7-58-53-PM.jpg",
+  "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg",
+  "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg",
+  "https://i.ibb.co/fd7Hy0vC/Whats-App-Image-2026-09-10-at-7-55-08-PM.jpg"
 ];
 
 export default function Home({ setCurrentTab }) {
@@ -28,7 +29,7 @@ export default function Home({ setCurrentTab }) {
       <div className="relative bg-neutral-900 border-b border-neutral-800 overflow-hidden mb-12">
         <div className="absolute inset-0 z-0">
           
-          {/* Mapeo de las imágenes del carrusel con desvanecimiento (fade) */}
+          {/* Mapeo de tus imágenes con desvanecimiento (fade) */}
           {BACKGROUND_IMAGES.map((img, index) => (
             <div
               key={index}
