@@ -3,52 +3,60 @@ import React, { useState } from 'react';
 const tattooItems = [
   {
     id: 1,
-    title: 'Sleeve Realista Geométrico',
-    category: 'Realismo',
-    artist: 'Carlos "Ink" Ruiz',
-    image: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop',
+    title: 'Línea Fina Constelación',
+    category: 'Minimalistas',
+    artist: 'Alejandro M.',
+    image: 'https://images.unsplash.com/photo-1562965903-d744b7d52f66?q=80&w=1000&auto=format&fit=crop',
+    description: 'Diseño delicado en línea fina con detalles geométricos y estelares en el antebrazo.'
   },
   {
     id: 2,
-    title: 'Dragon Blackwork Torso',
-    category: 'Blackwork',
+    title: 'Pantera Mediana en Muslo',
+    category: 'Medianos',
     artist: 'Valeria Cova',
-    image: 'https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1000&auto=format&fit=crop',
+    description: 'Pieza de tamaño medio con fuerte contraste de negros y sombras sólidas.'
   },
   {
     id: 3,
-    title: 'Micro-Realismo Botánico',
-    category: 'Fine Line',
-    artist: 'Alejandro M.',
-    image: 'https://images.unsplash.com/photo-1562965903-d744b7d52f66?q=80&w=800&auto=format&fit=crop',
+    title: 'Ojo Surrealista y Reloj',
+    category: 'Surrealismo y Grises',
+    artist: 'Carlos "Ink" Ruiz',
+    image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?q=80&w=1000&auto=format&fit=crop',
+    description: 'Composición surrealista en escala de grises jugando con conceptos del tiempo y la percepción.'
   },
   {
     id: 4,
-    title: 'Samurái Neo Tradicional',
-    category: 'Neo Tradicional',
+    title: 'Tengen Uzui Estilo Anime',
+    category: 'Anime',
     artist: 'Carlos "Ink" Ruiz',
-    image: 'https://images.unsplash.com/photo-1568515054352-8c7965955627?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1568515054352-8c7965955627?q=80&w=1000&auto=format&fit=crop',
+    description: 'Tatuaje a todo color inspirado en arte anime con líneas definidas y alta saturación visual.'
   },
   {
     id: 5,
-    title: 'Retrato Realista en Antebrazo',
-    category: 'Realismo',
-    artist: 'Carlos "Ink" Ruiz',
-    image: 'https://images.unsplash.com/photo-1590246814833-6715f58c4fcb?q=80&w=800&auto=format&fit=crop',
+    title: 'Mini Serpiente Minimalista',
+    category: 'Minimalistas',
+    artist: 'Alejandro M.',
+    image: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1000&auto=format&fit=crop',
+    description: 'Serpiente sutil y elegante en la zona de las costillas con grosor de aguja de línea única.'
   },
   {
     id: 6,
-    title: 'Mandala Blackwork Integral',
-    category: 'Blackwork',
+    title: 'Rosa Sombreada Mediana',
+    category: 'Medianos',
     artist: 'Valeria Cova',
-    image: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=1000&auto=format&fit=crop',
+    description: 'Clásica rosa con degradados suaves en grises y texturas detalladas en los pétalos.'
   },
 ];
 
-const categories = ['Todos', 'Realismo', 'Blackwork', 'Fine Line', 'Neo Tradicional'];
+// Nuevas categorías actualizadas
+const categories = ['Todos', 'Minimalistas', 'Medianos', 'Surrealismo y Grises', 'Anime'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Todos');
+  const [selectedTattoo, setSelectedTattoo] = useState(null);
 
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
@@ -93,7 +101,8 @@ export default function Portfolio() {
           {filteredTattoos.map((tattoo) => (
             <div 
               key={tattoo.id}
-              className="group relative bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-700 transition-all duration-300 shadow-xl flex flex-col"
+              onClick={() => setSelectedTattoo(tattoo)}
+              className="group relative bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-700 transition-all duration-300 shadow-xl flex flex-col cursor-pointer"
             >
               <div className="h-72 w-full overflow-hidden bg-neutral-950 relative">
                 <img 
@@ -119,7 +128,7 @@ export default function Portfolio() {
                 
                 <div className="mt-6 pt-4 border-t border-neutral-800 flex justify-between items-center">
                   <span className="text-xs text-neutral-500 uppercase tracking-widest">Estudio Residente</span>
-                  <span className="text-xs font-semibold text-red-500 group-hover:translate-x-1 transition-transform cursor-pointer">
+                  <span className="text-xs font-semibold text-red-500 group-hover:translate-x-1 transition-transform">
                     Ver detalles &rarr;
                   </span>
                 </div>
@@ -129,6 +138,58 @@ export default function Portfolio() {
         </div>
 
       </div>
+
+      {/* Modal / Lightbox para ver la imagen ampliada y detalles */}
+      {selectedTattoo && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            
+            {/* Botón Cerrar */}
+            <button 
+              onClick={() => setSelectedTattoo(null)}
+              className="absolute top-4 right-4 z-20 bg-neutral-950/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer font-bold text-lg"
+            >
+              ✕
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="h-72 md:h-full bg-neutral-950 flex items-center justify-center">
+                <img 
+                  src={selectedTattoo.image} 
+                  alt={selectedTattoo.title} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-8 flex flex-col justify-between">
+                <div>
+                  <span className="bg-red-950/60 text-red-400 text-xs px-3 py-1 rounded-full border border-red-900/50 uppercase tracking-wider font-semibold">
+                    {selectedTattoo.category}
+                  </span>
+                  <h2 className="text-2xl font-black text-white mt-3">{selectedTattoo.title}</h2>
+                  <p className="text-sm text-neutral-400 mt-1">Artista: <strong className="text-neutral-200">{selectedTattoo.artist}</strong></p>
+                  
+                  <p className="text-neutral-300 text-sm mt-6 leading-relaxed">
+                    {selectedTattoo.description}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-neutral-800">
+                  <button 
+                    onClick={() => {
+                      setSelectedTattoo(null);
+                    }}
+                    className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors cursor-pointer text-sm shadow-lg shadow-red-900/30"
+                  >
+                    Cotizar un diseño similar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
