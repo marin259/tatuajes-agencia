@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Enlace directo de tu logo en la nube (ImgBB)
 const LOGO_URL = "https://i.ibb.co/cXrSd5V4/logo-png.png";
 
 export default function Navbar({ currentTab, setCurrentTab }) {
@@ -15,19 +14,16 @@ export default function Navbar({ currentTab, setCurrentTab }) {
     <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-3">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* LOGO REAL DESDE LA NUBE */}
+        {/* LOGO ORIGINAL SIN CORTES FORZADOS */}
         <div 
           onClick={() => handleNavClick('home')} 
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center cursor-pointer group py-1"
         >
           <img 
             src={LOGO_URL} 
             alt="ASU_ARTATTOO Logo" 
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border border-red-600/50 shadow-md group-hover:scale-105 transition-transform bg-neutral-900"
+            className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
           />
-          <span className="text-white font-black tracking-wider text-sm sm:text-base group-hover:text-red-500 transition-colors">
-            ASU_ARTATTOO
-          </span>
         </div>
 
         {/* Botón de Hamburguesa para Móvil */}
