@@ -1,57 +1,106 @@
 import React, { useState } from 'react';
 
 const tattooItems = [
+  // --- ANIME ---
   {
     id: 1,
-    title: 'Línea Fina Constelación',
-    category: 'Minimalistas',
-    artist: 'Alejandro M.',
-    image: 'https://images.unsplash.com/photo-1562965903-d744b7d52f66?q=80&w=1000&auto=format&fit=crop',
-    description: 'Diseño delicado en línea fina con detalles geométricos y estelares en el antebrazo.'
+    title: 'Pieza Anime Estilo 1',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/C3yX9175/A-1.jpg',
+    description: 'Trabajo exclusivo en la categoría de anime con alto contraste y colores vibrantes.'
   },
   {
     id: 2,
-    title: 'Pantera Mediana en Muslo',
-    category: 'Medianos',
-    artist: 'Valeria Cova',
-    image: 'https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1000&auto=format&fit=crop',
-    description: 'Pieza de tamaño medio con fuerte contraste de negros y sombras sólidas.'
+    title: 'Pieza Anime Estilo 2',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/tpBk8dhx/A-2.jpg',
+    description: 'Tatuaje personalizado inspirado en personajes icónicos del anime.'
   },
   {
     id: 3,
-    title: 'Ojo Surrealista y Reloj',
-    category: 'Surrealismo y Grises',
-    artist: 'Carlos "Ink" Ruiz',
-    image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?q=80&w=1000&auto=format&fit=crop',
-    description: 'Composición surrealista en escala de grises jugando con conceptos del tiempo y la percepción.'
+    title: 'Pieza Anime Estilo 3',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/WpkMPqwf/A-3.jpg',
+    description: 'Diseño en piel con definición de líneas finas y saturación impecable.'
   },
   {
     id: 4,
-    title: 'Tengen Uzui Estilo Anime',
+    title: 'Pieza Anime Estilo 4',
     category: 'Anime',
-    artist: 'Carlos "Ink" Ruiz',
-    image: 'https://images.unsplash.com/photo-1568515054352-8c7965955627?q=80&w=1000&auto=format&fit=crop',
-    description: 'Tatuaje a todo color inspirado en arte anime con líneas definidas y alta saturación visual.'
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/cScC9CNr/A-4.jpg',
+    description: 'Obra de arte en tinta adaptada a la anatomía con gran detalle visual.'
   },
   {
     id: 5,
-    title: 'Mini Serpiente Minimalista',
-    category: 'Minimalistas',
-    artist: 'Alejandro M.',
-    image: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1000&auto=format&fit=crop',
-    description: 'Serpiente sutil y elegante en la zona de las costillas con grosor de aguja de línea única.'
+    title: 'Pieza Anime Estilo 5',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/7JZQW30S/A-5.jpg',
+    description: 'Composición de anime con sombreados limpios y expresión fiel al diseño.'
   },
   {
     id: 6,
-    title: 'Rosa Sombreada Mediana',
-    category: 'Medianos',
-    artist: 'Valeria Cova',
-    image: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=1000&auto=format&fit=crop',
-    description: 'Clásica rosa con degradados suaves en grises y texturas detalladas en los pétalos.'
+    title: 'Pieza Anime Estilo 6',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/dJ3xvxm3/A-6.jpg',
+    description: 'Tinta a todo color reflejando la esencia del estilo otaku profesional.'
+  },
+  {
+    id: 7,
+    title: 'Pieza Anime Estilo 7',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/FbBS2V82/A-7.jpg',
+    description: 'Detalle minucioso en líneas y paleta de colores vivos.'
+  },
+  {
+    id: 8,
+    title: 'Pieza Anime Estilo 8',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/xK3SZh9G/A-8.jpg',
+    description: 'Trabajo dinámico de personajes con acabados de alta calidad.'
+  },
+  {
+    id: 9,
+    title: 'Pieza Anime Estilo 9',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/RpB7740D/A-9.jpg',
+    description: 'Tatuaje de gran impacto visual y fluidez en el diseño.'
+  },
+  {
+    id: 10,
+    title: 'Pieza Anime Estilo 10',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/xt0bJzGc/A-10.jpg',
+    description: 'Línea y color perfectamente integrados en la piel.'
+  },
+  {
+    id: 11,
+    title: 'Pieza Anime Estilo 11',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/C33MyfZv/A-11.jpg',
+    description: 'Estilo de animación llevado al arte corporal con total precisión.'
+  },
+  {
+    id: 12,
+    title: 'Pieza Anime Estilo 12',
+    category: 'Anime',
+    artist: 'Estudio Residente',
+    image: 'https://i.ibb.co/35n4fDHJ/A-12.jpg',
+    description: 'Cierre de galería anime con una pieza magistral y personalizada.'
   },
 ];
 
-// Nuevas categorías actualizadas
+// Categorías oficiales de tu estudio
 const categories = ['Todos', 'Minimalistas', 'Medianos', 'Surrealismo y Grises', 'Anime'];
 
 export default function Portfolio() {
@@ -175,9 +224,7 @@ export default function Portfolio() {
 
                 <div className="mt-8 pt-6 border-t border-neutral-800">
                   <button 
-                    onClick={() => {
-                      setSelectedTattoo(null);
-                    }}
+                    onClick={() => setSelectedTattoo(null)}
                     className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors cursor-pointer text-sm shadow-lg shadow-red-900/30"
                   >
                     Cotizar un diseño similar
