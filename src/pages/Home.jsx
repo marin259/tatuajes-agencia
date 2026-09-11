@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+// Lista de imágenes para el carrusel de fondo (puedes reemplazar estas URLs con tus propias fotos en la nube)
+const BACKGROUND_IMAGES = [
+  "https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1600&auto=format&fit=crop", // Estudio / Tatuador
+  "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1600&auto=format&fit=crop", // Tatuaje en proceso
+  "https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1600&auto=format&fit=crop"    // Ambiente del estudio
+];
 
 export default function Home({ setCurrentTab }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Efecto para rotar las imágenes del fondo automáticamente cada 5 segundos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === BACKGROUND_IMAGES.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 pb-16">
       
-      {/* Banner / Hero Principal */}
+      {/* Banner / Hero Principal con Carrusel */}
       <div className="relative bg-neutral-900 border-b border-neutral-800 overflow-hidden mb-12">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1598371839606-f18c660f6448?q=80&w=1600&auto=format&fit=crop" 
-            alt="Tattoo Studio Background" 
-            className="w-full h-full object-cover object-center opacity-20 scale-105 filter grayscale contrast-125"
-          />
+          
+          {/* Mapeo de las imágenes del carrusel con desvanecimiento (fade) */}
+          {BACKGROUND_IMAGES.map((img, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 filter grayscale contrast-125 ${
+                index === currentImageIndex ? 'opacity-25' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${img})` }}
+            />
+          ))}
+
+          {/* Degradado oscuro para asegurar la legibilidad del texto */}
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent"></div>
         </div>
 
@@ -39,6 +67,21 @@ export default function Home({ setCurrentTab }) {
               Ver Portafolio
             </button>
           </div>
+
+          {/* Indicadores de puntos del carrusel */}
+          <div className="mt-8 flex gap-2">
+            {BACKGROUND_IMAGES.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`h-2 rounded-full transition-all cursor-pointer ${
+                  index === currentImageIndex ? 'bg-red-600 w-6' : 'bg-neutral-700 w-2 hover:bg-neutral-500'
+                }`}
+                aria-label={`Cambiar a slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
 
