@@ -4,7 +4,9 @@ const BACKGROUND_IMAGES = [
   "https://i.ibb.co/sp6Z1c5y/Whats-App-Image-2026-09-10-at-7-58-53-PM.jpg",
   "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg",
   "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg",
-  "https://i.ibb.co/fd7Hy0vC/Whats-App-Image-2026-09-10-at-7-55-08-PM.jpg"
+  "https://i.ibb.co/fd7Hy0vC/Whats-App-Image-2026-09-10-at-7-55-08-PM.jpg",
+  "https://i.ibb.co/rfx1kv6R/Whats-App-Image-2026-09-10-at-7-59-00-PM.jpg",
+"https://i.ibb.co/HWM6dyN/Whats-App-Image-2026-09-10-at-8-06-23-PM.jpg"
 ];
 
 export default function Home({ setCurrentTab }) {
