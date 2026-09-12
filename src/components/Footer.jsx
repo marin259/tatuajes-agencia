@@ -38,13 +38,43 @@ export default function Footer({ setCurrentTab }) {
           <p className="text-sm text-neutral-400">Domingos: <span className="text-white font-medium">Solo con cita previa</span></p>
         </div>
 
-        {/* Columna 4: Redes */}
+        {/* Columna 4: Redes Sociales */}
         <div className="space-y-3">
           <h4 className="text-white font-bold text-sm tracking-wider uppercase">Contacto & Redes</h4>
-          <p className="text-sm text-neutral-400">Atención directa y cotizaciones a través de nuestro sistema de reservas por WhatsApp.</p>
-          <div className="pt-2 flex gap-3 text-xs text-neutral-300">
-            <span className="bg-neutral-900 border border-neutral-800 px-3 py-1 rounded-full">Instagram</span>
-            <span className="bg-neutral-900 border border-neutral-800 px-3 py-1 rounded-full">WhatsApp</span>
+          <p className="text-sm text-neutral-400">Atención directa y cotizaciones a través de nuestras redes oficiales.</p>
+          <div className="pt-2 flex flex-wrap gap-2 text-xs font-medium">
+            <a 
+              href="https://instagram.com/asu_artattoo" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white px-3 py-1.5 rounded-full transition-colors"
+            >
+              Instagram
+            </a>
+            <a 
+              href="https://facebook.com/Asuartattoo" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white px-3 py-1.5 rounded-full transition-colors"
+            >
+              Facebook
+            </a>
+            <a 
+              href="https://tiktok.com/@asu_artattoo" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white px-3 py-1.5 rounded-full transition-colors"
+            >
+              TikTok
+            </a>
+            <a 
+              href="https://wa.me/message/XHARGLUYNYWZH1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white px-3 py-1.5 rounded-full transition-colors"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
 
