@@ -9,15 +9,22 @@ export default function Navbar({ currentTab, setCurrentTab }) {
   };
 
   return (
-    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-4">
+    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* ESPACIO VACÍO O MARCA DE TEXTO SIMPLE */}
+        {/* LOGO Y MARCA */}
         <div 
           onClick={() => handleNavClick('home')} 
-          className="cursor-pointer text-white font-bold text-lg tracking-wider"
+          className="cursor-pointer flex items-center gap-3 group"
         >
-          ASU_ARTATTOO
+          <img 
+            src="https://i.ibb.co/zhC53H6n/Recurso-1-300x.png" 
+            alt="ASU_ARTATTOO Logo" 
+            className="w-9 h-9 object-contain rounded-full bg-neutral-900 p-1 border border-neutral-800 group-hover:border-neutral-700 transition-colors"
+          />
+          <span className="text-white font-bold text-lg tracking-wider">
+            ASU_ARTATTOO
+          </span>
         </div>
 
         {/* Botón de Hamburguesa para Móvil */}
