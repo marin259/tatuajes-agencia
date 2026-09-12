@@ -114,21 +114,9 @@ export default function Portfolio() {
     <div className="min-h-screen bg-neutral-950 text-neutral-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         
-        {/* Encabezado de la Sección con tu Logo Real */}
+        {/* Encabezado de la Sección */}
         <div className="text-center mb-12">
-          
-          <div className="inline-flex items-center gap-3 bg-neutral-900/80 border border-neutral-800 px-4 py-2 rounded-full mb-4 shadow-md">
-            <img 
-              src="https://i.ibb.co/zVmFgSqw/Recurso-3-300x.png" 
-              alt="Logo Ink & Art" 
-              className="w-7 h-7 object-contain rounded-full"
-            />
-            <span className="text-neutral-200 font-semibold tracking-wider text-sm">
-              INK & ART
-            </span>
-          </div>
-
-          <span className="text-red-600 text-xs font-bold tracking-widest uppercase bg-red-950/40 px-3 py-1 rounded-full border border-red-900/50 block max-w-fit mx-auto">
+          <span className="text-red-600 text-xs font-bold tracking-widest uppercase bg-red-950/40 px-3 py-1 rounded-full border border-red-900/50">
             Galería Exclusiva
           </span>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-4 text-white">
