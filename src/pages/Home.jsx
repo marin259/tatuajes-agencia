@@ -9,22 +9,22 @@ const BACKGROUND_IMAGES = [
   "https://i.ibb.co/HWM6dyN/Whats-App-Image-2026-09-10-at-8-06-23-PM.jpg"
 ];
 
-// Muestra rápida de trabajos destacados para el Home
+// Muestra rápida alineada con tus categorías reales del portafolio
 const FEATURED_WORKS = [
   {
-    title: "Anime & Otaku Art",
-    category: "Color / Trazos",
+    title: "Arte Otaku & Trazos Limpios",
+    category: "Anime",
     image: "https://i.ibb.co/sp6Z1c5y/Whats-App-Image-2026-09-10-at-7-58-53-PM.jpg"
   },
   {
-    title: "Neoriental Moderno",
-    category: "Composición",
-    image: "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg"
+    title: "Composiciones con Profundidad",
+    category: "Surrealismo y Grises",
+    image: "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg"
   },
   {
-    title: "Black & Grey Detail",
-    category: "Sombras / Realismo",
-    image: "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg"
+    title: "Piezas de Gran Detalle",
+    category: "Medianos",
+    image: "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg"
   }
 ];
 
@@ -130,12 +130,12 @@ export default function Home({ setCurrentTab }) {
         </div>
       </div>
 
-      {/* NUEVA SECCIÓN: Muestra Rápida del Portafolio */}
+      {/* Muestra Rápida del Portafolio con Categorías Reales */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
           <div>
-            <span className="text-red-500 text-xs font-bold tracking-widest uppercase">Galería Destacada</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">Últimos Trabajos en Piel</h2>
+            <span className="text-red-500 text-xs font-bold tracking-widest uppercase">Galería Exclusiva</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">Explora Nuestros Estilos</h2>
           </div>
           <button
             onClick={() => setCurrentTab('portfolio')}
