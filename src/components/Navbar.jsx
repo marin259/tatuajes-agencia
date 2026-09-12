@@ -27,10 +27,10 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           </span>
         </div>
 
-        {/* Botón de Hamburguesa para Móvil */}
+        {/* Botón de Hamburguesa para Móvil y Celulares en Horizontal */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-neutral-300 hover:text-white focus:outline-none p-2"
+          className="lg:hidden text-neutral-300 hover:text-white focus:outline-none p-2 cursor-pointer"
           aria-label="Abrir menú"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,8 +42,8 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           </svg>
         </button>
 
-        {/* Navegación para Escritorio */}
-        <nav className="hidden md:flex items-center gap-2">
+        {/* Navegación para Escritorio / Pantallas Grandes */}
+        <nav className="hidden lg:flex items-center gap-2">
           <button
             onClick={() => handleNavClick('home')}
             className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
@@ -102,12 +102,12 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
       </div>
 
-      {/* Menú desplegable para Móvil */}
+      {/* Menú desplegable para Móvil y Horizontal */}
       {isOpen && (
-        <nav className="md:hidden mt-4 pt-4 border-t border-neutral-800 flex flex-col gap-2">
+        <nav className="lg:hidden mt-4 pt-4 border-t border-neutral-800 flex flex-col gap-2">
           <button
             onClick={() => handleNavClick('home')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
               currentTab === 'home'
                 ? 'bg-neutral-200 text-neutral-950 font-semibold'
                 : 'bg-neutral-900 text-neutral-300'
@@ -118,7 +118,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
           <button
             onClick={() => handleNavClick('portfolio')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
               currentTab === 'portfolio'
                 ? 'bg-neutral-200 text-neutral-950 font-semibold'
                 : 'bg-neutral-900 text-neutral-300'
@@ -129,7 +129,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           
           <button
             onClick={() => handleNavClick('blog')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
               currentTab === 'blog'
                 ? 'bg-neutral-200 text-neutral-950 font-semibold'
                 : 'bg-neutral-900 text-neutral-300'
@@ -140,7 +140,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
           <button
             onClick={() => handleNavClick('booking')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-semibold transition-colors ${
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-semibold transition-colors cursor-pointer ${
               currentTab === 'booking' 
                 ? 'bg-red-600 text-white' 
                 : 'bg-neutral-900 text-neutral-300'
@@ -151,7 +151,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           
           <button
             onClick={() => handleNavClick('admin')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
               currentTab === 'admin'
                 ? 'bg-neutral-200 text-neutral-950 font-semibold'
                 : 'bg-neutral-900 text-neutral-300'
