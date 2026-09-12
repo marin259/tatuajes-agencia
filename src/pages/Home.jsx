@@ -68,19 +68,19 @@ export default function Home({ setCurrentTab }) {
 
         {/* Contenido Principal */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center flex flex-col items-center">
-          <span className="text-red-400 text-xs sm:text-sm font-bold tracking-widest uppercase bg-neutral-900/90 px-4 py-1.5 rounded-full border border-red-900/50 shadow-lg">
+          <span className="text-neutral-400 text-xs sm:text-sm font-bold tracking-widest uppercase bg-neutral-900/90 px-4 py-1.5 rounded-full border border-neutral-800 shadow-lg">
             Estudio Residente & Artistas Guest
           </span>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mt-6 text-white drop-shadow-md leading-tight">
-            ARTE EXCLUSIVO EN <span className="text-red-500">PIEL Y TINTA</span>
+            ARTE EXCLUSIVO EN <span className="text-neutral-400">PIEL Y TINTA</span>
           </h1>
-          <p className="text-neutral-200 mt-4 max-w-xl mx-auto text-sm sm:text-base font-medium drop-shadow">
+          <p className="text-neutral-300 mt-4 max-w-xl mx-auto text-sm sm:text-base font-medium drop-shadow">
             Diseños únicos y personalizados. Llevamos tu historia al siguiente nivel con los más altos estándares de calidad y seguridad.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <button
               onClick={() => setCurrentTab('booking')}
-              className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-red-900/40 transition-all cursor-pointer text-sm tracking-wide"
+              className="bg-neutral-100 hover:bg-white text-neutral-950 font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all cursor-pointer text-sm tracking-wide"
             >
               Reservar Cita Ahora &rarr;
             </button>
@@ -99,7 +99,7 @@ export default function Home({ setCurrentTab }) {
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  index === currentImageIndex ? 'bg-red-500 w-6 shadow-md' : 'bg-neutral-700 w-2 hover:bg-neutral-500'
+                  index === currentImageIndex ? 'bg-neutral-200 w-6 shadow-md' : 'bg-neutral-700 w-2 hover:bg-neutral-500'
                 }`}
                 aria-label={`Cambiar a slide ${index + 1}`}
               />
@@ -109,24 +109,43 @@ export default function Home({ setCurrentTab }) {
         </div>
       </div>
 
-      {/* Sección de Características / Por qué elegirnos */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
-            <div className="text-red-500 font-black text-3xl mb-2">01</div>
-            <h3 className="text-white font-bold text-lg mb-2">Diseños a Medida</h3>
-            <p className="text-neutral-400 text-sm">Cada pieza es creada exclusivamente para ti, adaptándose a la anatomía de tu cuerpo.</p>
+      {/* Sección de Características Minimalista con Círculos y Grises */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          
+          {/* Item 1 */}
+          <div className="flex flex-col items-center">
+            <div className="w-20 h-20 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-5 text-neutral-400 shadow-inner">
+              <svg className="w-8 h-8 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 tracking-wide">Diseños a Medida</h3>
+            <p className="text-neutral-500 text-sm max-w-xs leading-relaxed">Cada pieza creada exclusivamente para la anatomía de tu cuerpo.</p>
           </div>
-          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
-            <div className="text-red-500 font-black text-3xl mb-2">02</div>
-            <h3 className="text-white font-bold text-lg mb-2">Estándares Médicos</h3>
-            <p className="text-neutral-400 text-sm">Materiales 100% descartables, esterilización de punta y máxima seguridad higiénica.</p>
+
+          {/* Item 2 */}
+          <div className="flex flex-col items-center">
+            <div className="w-20 h-20 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-5 text-neutral-400 shadow-inner">
+              <svg className="w-8 h-8 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 tracking-wide">Estándares Médicos</h3>
+            <p className="text-neutral-500 text-sm max-w-xs leading-relaxed">Materiales 100% descartables y máxima seguridad higiénica.</p>
           </div>
-          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
-            <div className="text-red-500 font-black text-3xl mb-2">03</div>
-            <h3 className="text-white font-bold text-lg mb-2">Artistas Residentes</h3>
-            <p className="text-neutral-400 text-sm">Especialistas en Realismo, Blackwork, Fine Line y Neo Tradicional con años de trayectoria.</p>
+
+          {/* Item 3 */}
+          <div className="flex flex-col items-center">
+            <div className="w-20 h-20 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-5 text-neutral-400 shadow-inner">
+              <svg className="w-8 h-8 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 tracking-wide">Artistas Residentes</h3>
+            <p className="text-neutral-500 text-sm max-w-xs leading-relaxed">Especialistas con amplia trayectoria en diferentes estilos.</p>
           </div>
+
         </div>
       </div>
 
@@ -134,7 +153,7 @@ export default function Home({ setCurrentTab }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
           <div>
-            <span className="text-red-500 text-xs font-bold tracking-widest uppercase">Galería Exclusiva</span>
+            <span className="text-neutral-400 text-xs font-bold tracking-widest uppercase">Galería Exclusiva</span>
             <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">Explora Nuestros Estilos</h2>
           </div>
           <button
@@ -161,10 +180,10 @@ export default function Home({ setCurrentTab }) {
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-90 transition-opacity"></div>
               
               <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
-                <span className="text-red-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                <span className="text-neutral-400 text-xs font-semibold uppercase tracking-wider mb-1">
                   {work.category}
                 </span>
-                <h3 className="text-white font-bold text-lg group-hover:text-red-400 transition-colors">
+                <h3 className="text-white font-bold text-lg group-hover:text-neutral-200 transition-colors">
                   {work.title}
                 </h3>
               </div>
