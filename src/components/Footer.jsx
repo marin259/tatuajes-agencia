@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LOGO_URL = "https://i.ibb.co/cXrSd5V4/logo-png.png";
+const LOGO_URL = "https://i.ibb.co/zhC53H6n/Recurso-1-300x.png";
 
 export default function Footer({ setCurrentTab }) {
   return (
@@ -10,7 +10,7 @@ export default function Footer({ setCurrentTab }) {
         {/* Columna 1: Info con Logo */}
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="ASU_ARTATTOO Logo" className="w-10 h-10 rounded-full object-cover border border-red-600/50 bg-neutral-900" />
+            <img src={LOGO_URL} alt="ASU_ARTATTOO Logo" className="w-10 h-10 rounded-full object-cover border border-neutral-800 bg-neutral-900 p-1" />
             <span className="text-white font-black tracking-wider text-base">
               ASU_ARTATTOO
             </span>
@@ -24,10 +24,10 @@ export default function Footer({ setCurrentTab }) {
         <div className="space-y-3">
           <h4 className="text-white font-bold text-sm tracking-wider uppercase">Navegación</h4>
           <ul className="space-y-2 text-sm">
-            <li><button onClick={() => setCurrentTab('home')} className="hover:text-red-500 transition-colors cursor-pointer">Inicio</button></li>
-            <li><button onClick={() => setCurrentTab('portfolio')} className="hover:text-red-500 transition-colors cursor-pointer">Portafolio</button></li>
-            <li><button onClick={() => setCurrentTab('blog')} className="hover:text-red-500 transition-colors cursor-pointer">Blog & Cuidados</button></li>
-            <li><button onClick={() => setCurrentTab('booking')} className="hover:text-red-500 transition-colors cursor-pointer">Reservar Cita</button></li>
+            <li><button onClick={() => setCurrentTab('home')} className="hover:text-white transition-colors cursor-pointer">Inicio</button></li>
+            <li><button onClick={() => setCurrentTab('portfolio')} className="hover:text-white transition-colors cursor-pointer">Portafolio</button></li>
+            <li><button onClick={() => setCurrentTab('blog')} className="hover:text-white transition-colors cursor-pointer">Blog & Cuidados</button></li>
+            <li><button onClick={() => setCurrentTab('booking')} className="hover:text-white transition-colors cursor-pointer">Reservar Cita</button></li>
           </ul>
         </div>
 
