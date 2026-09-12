@@ -6,7 +6,26 @@ const BACKGROUND_IMAGES = [
   "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg",
   "https://i.ibb.co/fd7Hy0vC/Whats-App-Image-2026-09-10-at-7-55-08-PM.jpg",
   "https://i.ibb.co/rfx1kv6R/Whats-App-Image-2026-09-10-at-7-59-00-PM.jpg",
-"https://i.ibb.co/HWM6dyN/Whats-App-Image-2026-09-10-at-8-06-23-PM.jpg"
+  "https://i.ibb.co/HWM6dyN/Whats-App-Image-2026-09-10-at-8-06-23-PM.jpg"
+];
+
+// Muestra rápida de trabajos destacados para el Home
+const FEATURED_WORKS = [
+  {
+    title: "Anime & Otaku Art",
+    category: "Color / Trazos",
+    image: "https://i.ibb.co/sp6Z1c5y/Whats-App-Image-2026-09-10-at-7-58-53-PM.jpg"
+  },
+  {
+    title: "Neoriental Moderno",
+    category: "Composición",
+    image: "https://i.ibb.co/35FZWmVj/Whats-App-Image-2026-09-10-at-7-55-14-PM.jpg"
+  },
+  {
+    title: "Black & Grey Detail",
+    category: "Sombras / Realismo",
+    image: "https://i.ibb.co/zWfm6dSH/Whats-App-Image-2026-09-10-at-7-55-07-PM.jpg"
+  }
 ];
 
 export default function Home({ setCurrentTab }) {
@@ -108,6 +127,49 @@ export default function Home({ setCurrentTab }) {
             <h3 className="text-white font-bold text-lg mb-2">Artistas Residentes</h3>
             <p className="text-neutral-400 text-sm">Especialistas en Realismo, Blackwork, Fine Line y Neo Tradicional con años de trayectoria.</p>
           </div>
+        </div>
+      </div>
+
+      {/* NUEVA SECCIÓN: Muestra Rápida del Portafolio */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+          <div>
+            <span className="text-red-500 text-xs font-bold tracking-widest uppercase">Galería Destacada</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">Últimos Trabajos en Piel</h2>
+          </div>
+          <button
+            onClick={() => setCurrentTab('portfolio')}
+            className="text-sm font-semibold text-neutral-300 hover:text-white flex items-center gap-2 transition-colors cursor-pointer group"
+          >
+            Ver portafolio completo 
+            <span className="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {FEATURED_WORKS.map((work, index) => (
+            <div 
+              key={index} 
+              onClick={() => setCurrentTab('portfolio')}
+              className="group relative h-80 rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 cursor-pointer"
+            >
+              <img 
+                src={work.image} 
+                alt={work.title} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-90 transition-opacity"></div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
+                <span className="text-red-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                  {work.category}
+                </span>
+                <h3 className="text-white font-bold text-lg group-hover:text-red-400 transition-colors">
+                  {work.title}
+                </h3>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
