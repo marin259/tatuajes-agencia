@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const tattooItems = [
   // --- ANIME ---
@@ -166,14 +166,17 @@ export default function Portfolio() {
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
-    setIsModalOpen(true); // Activa la animación de entrada
+    // Pequeño retraso para asegurar que el navegador renderice el modal oculto antes de animar la entrada
+    requestAnimationFrame(() => {
+      setIsModalOpen(true);
+    });
   };
 
   const handleClosePost = () => {
-    setIsModalOpen(false); // Activa la animación de salida
+    setIsModalOpen(false); // Dispara la animación de salida
     setTimeout(() => {
       setSelectedPost(null);
-    }, 300); // Espera a que termine la transición antes de desmontar
+    }, 400); // Sincronizado con la duración de la transición (400ms)
   };
 
   const changeImage = (newIndex) => {
@@ -182,7 +185,7 @@ export default function Portfolio() {
     setTimeout(() => {
       setCurrentImageIndex(newIndex);
       setIsAnimating(false);
-    }, 150);
+    }, 200); // Transición de imagen más notoria
   };
 
   const nextImage = () => {
@@ -271,13 +274,13 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal con Transición Suave de Apertura y Cierre */}
+      {/* Modal con Transición Fluida y Visible */}
       {selectedPost && (
-        <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 transition-opacity duration-300 ${
-          isModalOpen ? 'opacity-100' : 'opacity-0'
+        <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 transition-all duration-400 ease-out ${
+          isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
-          <div className={`bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl transition-all duration-300 transform ${
-            isModalOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'
+          <div className={`bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl transition-all duration-400 ease-out transform ${
+            isModalOpen ? 'scale-100 translate-y-0 opacity-100' : 'scale-90 translate-y-8 opacity-0'
           }`}>
             
             {/* Botón Cerrar */}
@@ -288,13 +291,13 @@ export default function Portfolio() {
               ✕
             </button>
 
-            {/* Carrusel de Imágenes */}
+            {/* Carrusel de Imágenes con Transición Notoria */}
             <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] overflow-hidden">
               <img 
                 src={selectedPost.images[currentImageIndex]} 
                 alt={selectedPost.title} 
-                className={`w-full h-full object-contain max-h-[80vh] transition-all duration-300 transform ${
-                  isAnimating ? 'opacity-0 scale-95 filter blur-xs' : 'opacity-100 scale-100 filter blur-none'
+                className={`w-full h-full object-contain max-h-[80vh] transition-all duration-300 ease-in-out transform ${
+                  isAnimating ? 'opacity-0 scale-90 filter blur-xs' : 'opacity-100 scale-100 filter blur-none'
                 }`}
               />
 
