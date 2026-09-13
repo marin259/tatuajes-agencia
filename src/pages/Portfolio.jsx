@@ -158,25 +158,40 @@ export default function Portfolio() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isGridAnimating, setIsGridAnimating] = useState(false);
 
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
     : tattooItems.filter(item => item.category === activeCategory);
 
+  const handleCategoryChange = (category) => {
+    if (category === activeCategory) return;
+    
+    // Inicia el desvanecimiento de salida
+    setIsGridAnimating(true);
+
+    setTimeout(() => {
+      setActiveCategory(category);
+      // Breve pausa y activa la entrada de la nueva categoría
+      setTimeout(() => {
+        setIsGridAnimating(false);
+      }, 50);
+    }, 200);
+  };
+
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
-    // Pequeño retraso para asegurar que el navegador renderice el modal oculto antes de animar la entrada
     requestAnimationFrame(() => {
       setIsModalOpen(true);
     });
   };
 
   const handleClosePost = () => {
-    setIsModalOpen(false); // Dispara la animación de salida
+    setIsModalOpen(false);
     setTimeout(() => {
       setSelectedPost(null);
-    }, 400); // Sincronizado con la duración de la transición (400ms)
+    }, 400);
   };
 
   const changeImage = (newIndex) => {
@@ -185,7 +200,7 @@ export default function Portfolio() {
     setTimeout(() => {
       setCurrentImageIndex(newIndex);
       setIsAnimating(false);
-    }, 200); // Transición de imagen más notoria
+    }, 200);
   };
 
   const nextImage = () => {
@@ -233,7 +248,7 @@ export default function Portfolio() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={`whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition cursor-pointer ${
                 activeCategory === category
                   ? 'bg-white text-black font-bold shadow-md'
@@ -245,8 +260,10 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid de Publicaciones */}
-        <div className="grid grid-cols-3 gap-1 sm:gap-4">
+        {/* Grid de Publicaciones con Transición Suave de Categoría */}
+        <div className={`grid grid-cols-3 gap-1 sm:gap-4 transition-all duration-300 ease-out transform ${
+          isGridAnimating ? 'opacity-0 translate-y-3 scale-98' : 'opacity-100 translate-y-0 scale-100'
+        }`}>
           {filteredTattoos.map((tattoo) => (
             <div 
               key={tattoo.id}
@@ -274,7 +291,7 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal con Transición Fluida y Visible */}
+      {/* Modal con Transición Fluida */}
       {selectedPost && (
         <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 transition-all duration-400 ease-out ${
           isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -291,7 +308,7 @@ export default function Portfolio() {
               ✕
             </button>
 
-            {/* Carrusel de Imágenes con Transición Notoria */}
+            {/* Carrusel de Imágenes */}
             <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] overflow-hidden">
               <img 
                 src={selectedPost.images[currentImageIndex]} 
