@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const blogArticles = [
   {
     id: 1,
-    title: 'Guía Definitiva de Post-Cuidado: Las Primeras 2 Semana',
+    title: 'Guía Definitiva de Post-Cuidado: Las Primeras 2 Semanas',
     category: 'Cuidados',
     readTime: '4 min lectura',
     date: 'Agosto 2026',
@@ -38,63 +38,68 @@ export default function Blog() {
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
         
-        {/* Encabezado */}
-        <div className="text-center mb-12">
-          <span className="text-red-600 text-xs font-bold tracking-widest uppercase bg-red-950/40 px-3 py-1 rounded-full border border-red-900/50">
-            Consejos & Cultura Inktag
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-4 text-white">
-            BLOG & CUIDADOS
-          </h1>
-          <p className="text-neutral-400 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
-            Información profesional para proteger tu piel y entender el arte corporal de la mano de nuestros expertos.
+        {/* Encabezado Estilo Editorial */}
+        <div className="border-b border-neutral-900 pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="text-red-500 text-xs font-mono tracking-widest uppercase">
+              // Revista & Cultura
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-light tracking-tight mt-2 text-white font-serif">
+              Blog & Cuidados
+            </h1>
+          </div>
+          <p className="text-neutral-400 text-sm max-w-md font-light">
+            Artículos seleccionados sobre el cuidado de tu piel y la cultura detrás de cada pieza de tinta.
           </p>
         </div>
 
-        {/* Cuadrícula de Artículos */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogArticles.map((article) => (
-            <div 
+        {/* Lista de Artículos en formato Editorial / Horizontal */}
+        <div className="space-y-6">
+          {blogArticles.map((article, index) => (
+            <article 
               key={article.id}
-              className="bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-700 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+              onClick={() => setSelectedArticle(article)}
+              className="group bg-neutral-900/40 hover:bg-neutral-900 border border-neutral-900 hover:border-neutral-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 cursor-pointer flex flex-col md:flex-row gap-6 md:gap-8 items-center"
             >
-              <div>
-                <div className="h-52 w-full overflow-hidden bg-neutral-950 relative">
-                  <img 
-                    src={article.image} 
-                    alt={article.title} 
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                  />
-                  <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-xs px-3 py-1 rounded-full border border-neutral-800 z-10">
-                    {article.category}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <div className="flex justify-between items-center text-xs text-neutral-500 mb-2">
-                    <span>{article.date}</span>
-                    <span>{article.readTime}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-red-500 transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-                    {article.excerpt}
-                  </p>
-                </div>
+              {/* Imagen miniatura lateral */}
+              <div className="w-full md:w-64 h-48 rounded-xl overflow-hidden bg-neutral-950 relative flex-shrink-0">
+                <img 
+                  src={article.image} 
+                  alt={article.title} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                />
+                <span className="absolute top-3 left-3 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border border-neutral-800">
+                  {article.category}
+                </span>
               </div>
 
-              <div className="p-6 pt-0">
-                <button 
-                  onClick={() => setSelectedArticle(article)}
-                  className="w-full mt-4 bg-neutral-950 hover:bg-red-600 text-neutral-200 hover:text-white border border-neutral-800 hover:border-red-600 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer"
-                >
-                  Leer Artículo Completo
-                </button>
+              {/* Información del artículo */}
+              <div className="flex-1 flex flex-col justify-between space-y-3">
+                <div className="flex items-center gap-3 text-xs text-neutral-500 font-mono">
+                  <span>0{index + 1}</span>
+                  <span>—</span>
+                  <span>{article.date}</span>
+                  <span>•</span>
+                  <span>{article.readTime}</span>
+                </div>
+
+                <h2 className="text-xl sm:text-2xl font-medium text-white group-hover:text-red-500 transition-colors leading-snug">
+                  {article.title}
+                </h2>
+
+                <p className="text-neutral-400 text-sm font-light leading-relaxed line-clamp-2">
+                  {article.excerpt}
+                </p>
+
+                <div className="pt-2 flex items-center text-xs font-medium text-neutral-300 group-hover:text-white gap-2">
+                  <span>Leer historia completa</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
