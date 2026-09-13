@@ -66,7 +66,7 @@ export default function Blog() {
                   <img 
                     src={article.image} 
                     alt={article.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                   />
                   <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-xs px-3 py-1 rounded-full border border-neutral-800 z-10">
                     {article.category}
@@ -132,11 +132,11 @@ export default function Blog() {
 
                 {/* Imagen del artículo */}
                 {selectedArticle.image && (
-                  <div className="w-full h-56 sm:h-72 rounded-xl overflow-hidden bg-neutral-900 border border-neutral-900 my-4">
+                  <div className="w-full h-56 sm:h-72 rounded-xl overflow-hidden bg-neutral-900 border border-neutral-900 my-4 relative">
                     <img 
                       src={selectedArticle.image} 
                       alt={selectedArticle.title} 
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                 )}
