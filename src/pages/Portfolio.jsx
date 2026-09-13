@@ -7,8 +7,12 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 1',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/C3yX9175/A-1.jpg',
-    description: 'Trabajo exclusivo en la categoría de anime con alto contraste y colores vibrantes.',
+    images: [
+      'https://i.ibb.co/C3yX9175/A-1.jpg',
+      'https://i.ibb.co/tpBk8dhx/A-2.jpg',
+      'https://i.ibb.co/WpkMPqwf/A-3.jpg'
+    ],
+    description: 'Trabajo exclusivo en la categoría de anime con alto contraste y colores vibrantes. Desliza para ver más ángulos.',
     date: '11 de noviembre de 2025'
   },
   {
@@ -16,7 +20,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 2',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/tpBk8dhx/A-2.jpg',
+    images: [
+      'https://i.ibb.co/tpBk8dhx/A-2.jpg',
+      'https://i.ibb.co/cScC9CNr/A-4.jpg'
+    ],
     description: 'Tatuaje personalizado inspirado en personajes icónicos del anime.',
     date: '15 de octubre de 2025'
   },
@@ -25,7 +32,11 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 3',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/WpkMPqwf/A-3.jpg',
+    images: [
+      'https://i.ibb.co/WpkMPqwf/A-3.jpg',
+      'https://i.ibb.co/7JZQW30S/A-5.jpg',
+      'https://i.ibb.co/dJ3xvxm3/A-6.jpg'
+    ],
     description: 'Diseño en piel con definición de líneas finas y saturación impecable.',
     date: '3 de septiembre de 2025'
   },
@@ -34,7 +45,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 4',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/cScC9CNr/A-4.jpg',
+    images: [
+      'https://i.ibb.co/cScC9CNr/A-4.jpg',
+      'https://i.ibb.co/FbBS2V82/A-7.jpg'
+    ],
     description: 'Obra de arte en tinta adaptada a la anatomía con gran detalle visual.',
     date: '20 de agosto de 2025'
   },
@@ -43,7 +57,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 5',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/7JZQW30S/A-5.jpg',
+    images: [
+      'https://i.ibb.co/7JZQW30S/A-5.jpg',
+      'https://i.ibb.co/xK3SZh9G/A-8.jpg'
+    ],
     description: 'Composición de anime con sombreados limpios y expresión fiel al diseño.',
     date: '12 de julio de 2025'
   },
@@ -52,7 +69,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 6',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/dJ3xvxm3/A-6.jpg',
+    images: [
+      'https://i.ibb.co/dJ3xvxm3/A-6.jpg',
+      'https://i.ibb.co/RpB7740D/A-9.jpg'
+    ],
     description: 'Tinta a todo color reflejando la esencia del estilo otaku profesional.',
     date: '30 de junio de 2025'
   },
@@ -61,7 +81,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 7',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/FbBS2V82/A-7.jpg',
+    images: [
+      'https://i.ibb.co/FbBS2V82/A-7.jpg',
+      'https://i.ibb.co/xt0bJzGc/A-10.jpg'
+    ],
     description: 'Detalle minucioso en líneas y paleta de colores vivos.',
     date: '18 de mayo de 2025'
   },
@@ -70,7 +93,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 8',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/xK3SZh9G/A-8.jpg',
+    images: [
+      'https://i.ibb.co/xK3SZh9G/A-8.jpg',
+      'https://i.ibb.co/C33MyfZv/A-11.jpg'
+    ],
     description: 'Trabajo dinámico de personajes con acabados de alta calidad.',
     date: '02 de abril de 2025'
   },
@@ -79,7 +105,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 9',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/RpB7740D/A-9.jpg',
+    images: [
+      'https://i.ibb.co/RpB7740D/A-9.jpg',
+      'https://i.ibb.co/35n4fDHJ/A-12.jpg'
+    ],
     description: 'Tatuaje de gran impacto visual y fluidez en el diseño.',
     date: '14 de marzo de 2025'
   },
@@ -88,7 +117,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 10',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/xt0bJzGc/A-10.jpg',
+    images: [
+      'https://i.ibb.co/xt0bJzGc/A-10.jpg',
+      'https://i.ibb.co/C3yX9175/A-1.jpg'
+    ],
     description: 'Línea y color perfectamente integrados en la piel.',
     date: '22 de febrero de 2025'
   },
@@ -97,7 +129,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 11',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/C33MyfZv/A-11.jpg',
+    images: [
+      'https://i.ibb.co/C33MyfZv/A-11.jpg',
+      'https://i.ibb.co/tpBk8dhx/A-2.jpg'
+    ],
     description: 'Estilo de animación llevado al arte corporal con total precisión.',
     date: '10 de enero de 2025'
   },
@@ -106,7 +141,10 @@ const tattooItems = [
     title: 'Pieza Anime Estilo 12',
     category: 'Anime',
     artist: 'asu_arttattoo',
-    image: 'https://i.ibb.co/35n4fDHJ/A-12.jpg',
+    images: [
+      'https://i.ibb.co/35n4fDHJ/A-12.jpg',
+      'https://i.ibb.co/WpkMPqwf/A-3.jpg'
+    ],
     description: 'Cierre de galería anime con una pieza magistral y personalizada.',
     date: '05 de enero de 2025'
   },
@@ -117,16 +155,34 @@ const categories = ['Todos', 'Minimalistas', 'Medianos', 'Surrealismo y Grises',
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [selectedPost, setSelectedPost] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
     : tattooItems.filter(item => item.category === activeCategory);
 
+  const handleOpenPost = (tattoo) => {
+    setSelectedPost(tattoo);
+    setCurrentImageIndex(0); // Reiniciar al abrir
+  };
+
+  const nextImage = () => {
+    if (selectedPost && selectedPost.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % selectedPost.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedPost && selectedPost.images) {
+      setCurrentImageIndex((prev) => (prev === 0 ? selectedPost.images.length - 1 : prev - 1));
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
         
-        {/* Perfil Header Estilo Instagram (Logo centrado arriba y nombre abajo, sin contadores) */}
+        {/* Perfil Header Estilo Instagram */}
         <div className="flex flex-col items-center text-center pb-8 border-b border-neutral-800">
           <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 mb-4 shadow-xl">
             <img 
@@ -148,7 +204,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Categorías (Pestañas estilo barra superior) */}
+        {/* Categorías */}
         <div className="flex overflow-x-auto gap-3 py-6 no-scrollbar border-b border-neutral-800 mb-6 justify-start sm:justify-center">
           {categories.map((category) => (
             <button
@@ -165,20 +221,27 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid de Publicaciones (Estilo Instagram Grid 3 columnas) */}
+        {/* Grid de Publicaciones */}
         <div className="grid grid-cols-3 gap-1 sm:gap-4">
           {filteredTattoos.map((tattoo) => (
             <div 
               key={tattoo.id}
-              onClick={() => setSelectedPost(tattoo)}
+              onClick={() => handleOpenPost(tattoo)}
               className="group relative aspect-square bg-neutral-900 overflow-hidden cursor-pointer"
             >
               <img 
-                src={tattoo.image} 
+                src={tattoo.images[0]} 
                 alt={tattoo.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
               />
-              {/* Overlay hover limpio (sin contadores de likes/comentarios) */}
+              
+              {/* Icono indicador si tiene múltiples fotos (estilo carrusel IG) */}
+              {tattoo.images.length > 1 && (
+                <div className="absolute top-2 right-2 text-white bg-black/60 px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  ❏
+                </div>
+              )}
+
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
                 <span>Ver publicación</span>
               </div>
@@ -188,9 +251,9 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal / Vista Detallada tipo Publicación de Instagram (Sin reacciones) */}
+      {/* Modal / Vista Detallada tipo Carrusel de Instagram */}
       {selectedPost && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
           <div className="bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl">
             
             {/* Botón Cerrar */}
@@ -201,16 +264,46 @@ export default function Portfolio() {
               ✕
             </button>
 
-            {/* Imagen Izquierda */}
+            {/* Carrusel de Imágenes (Izquierda) */}
             <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px]">
               <img 
-                src={selectedPost.image} 
+                src={selectedPost.images[currentImageIndex]} 
                 alt={selectedPost.title} 
-                className="w-full h-full object-contain max-h-[80vh]"
+                className="w-full h-full object-contain max-h-[80vh] transition-all duration-300"
               />
+
+              {/* Botones de navegación Anterior / Siguiente si hay más de 1 imagen */}
+              {selectedPost.images.length > 1 && (
+                <>
+                  <button 
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                  >
+                    ❮
+                  </button>
+                  <button 
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                  >
+                    ❯
+                  </button>
+
+                  {/* Indicadores de Puntos (Dots) */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                    {selectedPost.images.map((_, idx) => (
+                      <span 
+                        key={idx}
+                        className={`w-1.5 h-1.5 rounded-full transition-all ${
+                          idx === currentImageIndex ? 'bg-white w-3' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
-            {/* Panel de Detalles Derecha */}
+            {/* Panel de Detalles (Derecha) */}
             <div className="md:w-2/5 flex flex-col bg-neutral-950 border-t md:border-t-0 md:border-l border-neutral-800 max-h-[50vh] md:max-h-auto justify-between">
               
               <div>
@@ -244,7 +337,7 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Botón de Cotización (Sin barra de reacciones) */}
+              {/* Botón de Cotización */}
               <div className="p-4 border-t border-neutral-800 bg-black">
                 <button 
                   onClick={() => alert(`Iniciando cotización para: ${selectedPost.title}`)}
