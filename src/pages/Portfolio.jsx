@@ -160,12 +160,11 @@ export default function Portfolio() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isGridAnimating, setIsGridAnimating] = useState(false);
 
-  // Leer la URL al cargar la página para saber si hay un post abierto
+  // Al cargar la página, revisamos si hay un post guardado en sessionStorage
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const postId = params.get('post');
-    if (postId) {
-      const found = tattooItems.find(item => item.id.toString() === postId);
+    const savedPostId = sessionStorage.getItem('active_tattoo_post');
+    if (savedPostId) {
+      const found = tattooItems.find(item => item.id.toString() === savedPostId);
       if (found) {
         setSelectedPost(found);
         requestAnimationFrame(() => {
@@ -195,9 +194,8 @@ export default function Portfolio() {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
 
-    // Actualizar la URL agregando el parámetro ?post=ID sin recargar la página
-    const newUrl = `${window.location.pathname}?post=${tattoo.id}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
+    // Guardamos el ID en sessionStorage para recordarlo si recargan
+    sessionStorage.setItem('active_tattoo_post', tattoo.id);
 
     requestAnimationFrame(() => {
       setIsModalOpen(true);
@@ -207,9 +205,8 @@ export default function Portfolio() {
   const handleClosePost = () => {
     setIsModalOpen(false);
 
-    // Limpiar el parámetro ?post= de la URL al cerrar el modal
-    const newUrl = window.location.pathname;
-    window.history.pushState({ path: newUrl }, '', newUrl);
+    // Borramos el ID del almacenamiento al cerrar el modal
+    sessionStorage.removeItem('active_tattoo_post');
 
     setTimeout(() => {
       setSelectedPost(null);
