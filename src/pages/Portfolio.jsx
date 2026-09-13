@@ -156,6 +156,7 @@ export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [selectedPost, setSelectedPost] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
@@ -163,18 +164,29 @@ export default function Portfolio() {
 
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
-    setCurrentImageIndex(0); // Reiniciar al abrir
+    setCurrentImageIndex(0);
+  };
+
+  const changeImage = (newIndex) => {
+    if (newIndex === currentImageIndex) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentImageIndex(newIndex);
+      setIsAnimating(false);
+    }, 150); // Tiempo rápido de fundido
   };
 
   const nextImage = () => {
     if (selectedPost && selectedPost.images) {
-      setCurrentImageIndex((prev) => (prev + 1) % selectedPost.images.length);
+      const nextIdx = (currentImageIndex + 1) % selectedPost.images.length;
+      changeImage(nextIdx);
     }
   };
 
   const prevImage = () => {
     if (selectedPost && selectedPost.images) {
-      setCurrentImageIndex((prev) => (prev === 0 ? selectedPost.images.length - 1 : prev - 1));
+      const prevIdx = currentImageIndex === 0 ? selectedPost.images.length - 1 : currentImageIndex - 1;
+      changeImage(prevIdx);
     }
   };
 
@@ -235,7 +247,6 @@ export default function Portfolio() {
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
               />
               
-              {/* Icono indicador si tiene múltiples fotos (estilo carrusel IG) */}
               {tattoo.images.length > 1 && (
                 <div className="absolute top-2 right-2 text-white bg-black/60 px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 shadow">
                   ❏
@@ -251,7 +262,7 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal / Vista Detallada tipo Carrusel de Instagram */}
+      {/* Modal / Vista Detallada */}
       {selectedPost && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
           <div className="bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl">
@@ -264,38 +275,42 @@ export default function Portfolio() {
               ✕
             </button>
 
-            {/* Carrusel de Imágenes (Izquierda) */}
-            <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px]">
+            {/* Carrusel de Imágenes con Transición Suave */}
+            <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] overflow-hidden">
               <img 
                 src={selectedPost.images[currentImageIndex]} 
                 alt={selectedPost.title} 
-                className="w-full h-full object-contain max-h-[80vh] transition-all duration-300"
+                className={`w-full h-full object-contain max-h-[80vh] transition-all duration-300 transform ${
+                  isAnimating ? 'opacity-0 scale-95 filter blur-xs' : 'opacity-100 scale-100 filter blur-none'
+                }`}
               />
 
-              {/* Botones de navegación Anterior / Siguiente si hay más de 1 imagen */}
+              {/* Botones de navegación Anterior / Siguiente */}
               {selectedPost.images.length > 1 && (
                 <>
                   <button 
                     onClick={prevImage}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer z-20"
                   >
                     ❮
                   </button>
                   <button 
                     onClick={nextImage}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition cursor-pointer z-20"
                   >
                     ❯
                   </button>
 
-                  {/* Indicadores de Puntos (Dots) */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                  {/* Indicadores de Puntos (Dots) interactivos */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm z-20">
                     {selectedPost.images.map((_, idx) => (
-                      <span 
+                      <button 
                         key={idx}
-                        className={`w-1.5 h-1.5 rounded-full transition-all ${
-                          idx === currentImageIndex ? 'bg-white w-3' : 'bg-white/50'
+                        onClick={() => changeImage(idx)}
+                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                          idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/40 w-1.5'
                         }`}
+                        aria-label={`Ver imagen ${idx + 1}`}
                       />
                     ))}
                   </div>
@@ -318,7 +333,7 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* Descripción / Reseña */}
+                {/* Descripción */}
                 <div className="p-4 space-y-4 text-sm overflow-y-auto">
                   <div className="flex gap-3 items-start">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-neutral-800 flex-shrink-0">
