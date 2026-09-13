@@ -153,8 +153,6 @@ const tattooItems = [
 const categories = ['Todos', 'Minimalistas', 'Medianos', 'Surrealismo y Grises', 'Anime'];
 
 export default function Portfolio() {
-  // Estado para controlar la vista actual (ej: 'inicio' o 'portafolio')
-  const [currentView, setCurrentView] = useState('portafolio');
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -162,13 +160,8 @@ export default function Portfolio() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isGridAnimating, setIsGridAnimating] = useState(false);
 
-  // Al cargar la página, recuperamos la vista y el post guardados en sessionStorage
+  // Al cargar la página, revisamos si hay un post guardado en sessionStorage
   useEffect(() => {
-    const savedView = sessionStorage.getItem('active_view');
-    if (savedView) {
-      setCurrentView(savedView);
-    }
-
     const savedPostId = sessionStorage.getItem('active_tattoo_post');
     if (savedPostId) {
       const found = tattooItems.find(item => item.id.toString() === savedPostId);
@@ -180,11 +173,6 @@ export default function Portfolio() {
       }
     }
   }, []);
-
-  const handleViewChange = (view) => {
-    setCurrentView(view);
-    sessionStorage.setItem('active_view', view);
-  };
 
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
@@ -205,6 +193,8 @@ export default function Portfolio() {
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
+
+    // Guardamos el ID en sessionStorage para recordarlo si recargan
     sessionStorage.setItem('active_tattoo_post', tattoo.id);
 
     requestAnimationFrame(() => {
@@ -214,6 +204,8 @@ export default function Portfolio() {
 
   const handleClosePost = () => {
     setIsModalOpen(false);
+
+    // Borramos el ID del almacenamiento al cerrar el modal
     sessionStorage.removeItem('active_tattoo_post');
 
     setTimeout(() => {
@@ -246,130 +238,75 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-20">
-      
-      {/* Navbar Superior (Basado en tu imagen de referencia) */}
-      <nav className="flex items-center justify-between px-4 sm:px-8 py-4 border-b border-neutral-800 bg-black/80 sticky top-0 z-40 backdrop-blur-md">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => handleViewChange('inicio')}>
-          <div className="w-8 h-8 rounded-full overflow-hidden bg-neutral-800 border border-neutral-700">
-            <img src="https://i.ibb.co/C3yX9175/A-1.jpg" alt="Logo" className="w-full h-full object-cover"/>
-          </div>
-          <span className="font-bold tracking-wider text-sm sm:text-base">ASU_ARTTATTOO</span>
-        </div>
-
-        <div className="flex gap-4 text-xs sm:text-sm font-medium">
-          <button 
-            onClick={() => handleViewChange('inicio')}
-            className={`cursor-pointer transition ${currentView === 'inicio' ? 'text-white font-bold border-b-2 border-red-600 pb-1' : 'text-neutral-400 hover:text-white'}`}
-          >
-            Inicio
-          </button>
-          <button 
-            onClick={() => handleViewChange('portafolio')}
-            className={`cursor-pointer transition ${currentView === 'portafolio' ? 'text-white font-bold border-b-2 border-red-600 pb-1' : 'text-neutral-400 hover:text-white'}`}
-          >
-            Portafolio
-          </button>
-        </div>
-      </nav>
-
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
         
-        {/* VISTA INICIO */}
-        {currentView === 'inicio' && (
-          <div className="flex flex-col items-center text-center py-20 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide">ARTE EXCLUSIVO EN PIEL Y TINTA</h2>
-            <p className="text-neutral-400 max-w-md text-sm leading-relaxed">
-              Diseños únicos y personalizados. Llevamos tu historia al siguiente nivel con los más altos estándares de calidad y seguridad.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
-              <button 
-                onClick={() => alert('Redirigiendo a citas...')}
-                className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-sm transition cursor-pointer shadow-lg"
-              >
-                Reservar Cita Ahora →
-              </button>
-              <button 
-                onClick={() => handleViewChange('portafolio')}
-                className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-bold rounded-lg text-sm transition cursor-pointer"
-              >
-                Ver Portafolio
-              </button>
-            </div>
+        {/* Perfil Header */}
+        <div className="flex flex-col items-center text-center pb-8 border-b border-neutral-800">
+          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 mb-4 shadow-xl">
+            <img 
+              src="https://i.ibb.co/C3yX9175/A-1.jpg" 
+              alt="Logo Studio" 
+              className="w-full h-full object-cover"
+            />
           </div>
-        )}
+          
+          <h1 className="text-xl sm:text-2xl font-bold tracking-wide">asu_arttattoo</h1>
+          
+          <div className="mt-2 max-w-md">
+            <p className="font-medium text-sm text-neutral-200">Estudio de Tatuajes Profesional</p>
+            <p className="text-neutral-400 text-xs sm:text-sm mt-1 leading-relaxed">
+              🎨 Diseños personalizados y exclusivos.<br/>
+              📍 Anime, Surrealismo, Minimalistas y más.<br/>
+              👇 ¡Explora nuestras piezas abajo y cotiza la tuya!
+            </p>
+          </div>
+        </div>
 
-        {/* VISTA PORTAFOLIO */}
-        {currentView === 'portafolio' && (
-          <>
-            {/* Perfil Header */}
-            <div className="flex flex-col items-center text-center pb-8 border-b border-neutral-800">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 mb-4 shadow-xl">
-                <img 
-                  src="https://i.ibb.co/C3yX9175/A-1.jpg" 
-                  alt="Logo Studio" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
+        {/* Categorías */}
+        <div className="flex overflow-x-auto gap-3 py-6 no-scrollbar border-b border-neutral-800 mb-6 justify-start sm:justify-center">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleCategoryChange(category)}
+              className={`whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition cursor-pointer ${
+                activeCategory === category
+                  ? 'bg-white text-black font-bold shadow-md'
+                  : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid de Publicaciones */}
+        <div className={`grid grid-cols-3 gap-1 sm:gap-4 transition-all duration-300 ease-out transform ${
+          isGridAnimating ? 'opacity-0 translate-y-3 scale-98' : 'opacity-100 translate-y-0 scale-100'
+        }`}>
+          {filteredTattoos.map((tattoo) => (
+            <div 
+              key={tattoo.id}
+              onClick={() => handleOpenPost(tattoo)}
+              className="group relative aspect-square bg-neutral-900 overflow-hidden cursor-pointer"
+            >
+              <img 
+                src={tattoo.images[0]} 
+                alt={tattoo.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
               
-              <h1 className="text-xl sm:text-2xl font-bold tracking-wide">asu_arttattoo</h1>
-              
-              <div className="mt-2 max-w-md">
-                <p className="font-medium text-sm text-neutral-200">Estudio de Tatuajes Profesional</p>
-                <p className="text-neutral-400 text-xs sm:text-sm mt-1 leading-relaxed">
-                  🎨 Diseños personalizados y exclusivos.<br/>
-                  📍 Anime, Surrealismo, Minimalistas y más.<br/>
-                  👇 ¡Explora nuestras piezas abajo y cotiza la tuya!
-                </p>
-              </div>
-            </div>
-
-            {/* Categorías */}
-            <div className="flex overflow-x-auto gap-3 py-6 no-scrollbar border-b border-neutral-800 mb-6 justify-start sm:justify-center">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => handleCategoryChange(category)}
-                  className={`whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition cursor-pointer ${
-                    activeCategory === category
-                      ? 'bg-white text-black font-bold shadow-md'
-                      : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            {/* Grid de Publicaciones */}
-            <div className={`grid grid-cols-3 gap-1 sm:gap-4 transition-all duration-300 ease-out transform ${
-              isGridAnimating ? 'opacity-0 translate-y-3 scale-98' : 'opacity-100 translate-y-0 scale-100'
-            }`}>
-              {filteredTattoos.map((tattoo) => (
-                <div 
-                  key={tattoo.id}
-                  onClick={() => handleOpenPost(tattoo)}
-                  className="group relative aspect-square bg-neutral-900 overflow-hidden cursor-pointer"
-                >
-                  <img 
-                    src={tattoo.images[0]} 
-                    alt={tattoo.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                  />
-                  
-                  {tattoo.images.length > 1 && (
-                    <div className="absolute top-2 right-2 text-white bg-black/60 px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 shadow">
-                      ❏
-                    </div>
-                  )}
-
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
-                    <span>Ver publicación</span>
-                  </div>
+              {tattoo.images.length > 1 && (
+                <div className="absolute top-2 right-2 text-white bg-black/60 px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  ❏
                 </div>
-              ))}
+              )}
+
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
+                <span>Ver publicación</span>
+              </div>
             </div>
-          </>
-        )}
+          ))}
+        </div>
 
       </div>
 
