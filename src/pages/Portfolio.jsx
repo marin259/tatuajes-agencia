@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const tattooItems = [
   // --- ANIME ---
@@ -155,6 +155,7 @@ const categories = ['Todos', 'Minimalistas', 'Medianos', 'Surrealismo y Grises',
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [selectedPost, setSelectedPost] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -165,6 +166,14 @@ export default function Portfolio() {
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
+    setIsModalOpen(true); // Activa la animación de entrada
+  };
+
+  const handleClosePost = () => {
+    setIsModalOpen(false); // Activa la animación de salida
+    setTimeout(() => {
+      setSelectedPost(null);
+    }, 300); // Espera a que termine la transición antes de desmontar
   };
 
   const changeImage = (newIndex) => {
@@ -173,7 +182,7 @@ export default function Portfolio() {
     setTimeout(() => {
       setCurrentImageIndex(newIndex);
       setIsAnimating(false);
-    }, 150); // Tiempo rápido de fundido
+    }, 150);
   };
 
   const nextImage = () => {
@@ -194,7 +203,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-black text-white font-sans pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
         
-        {/* Perfil Header Estilo Instagram */}
+        {/* Perfil Header */}
         <div className="flex flex-col items-center text-center pb-8 border-b border-neutral-800">
           <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 mb-4 shadow-xl">
             <img 
@@ -262,20 +271,24 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal / Vista Detallada */}
+      {/* Modal con Transición Suave de Apertura y Cierre */}
       {selectedPost && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-          <div className="bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl">
+        <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 transition-opacity duration-300 ${
+          isModalOpen ? 'opacity-100' : 'opacity-0'
+        }`}>
+          <div className={`bg-black border border-neutral-800 rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative shadow-2xl transition-all duration-300 transform ${
+            isModalOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'
+          }`}>
             
             {/* Botón Cerrar */}
             <button 
-              onClick={() => setSelectedPost(null)}
-              className="absolute top-3 right-3 z-30 text-white bg-black/60 hover:bg-neutral-800 w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+              onClick={handleClosePost}
+              className="absolute top-3 right-3 z-30 text-white bg-black/60 hover:bg-neutral-800 w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold cursor-pointer transition"
             >
               ✕
             </button>
 
-            {/* Carrusel de Imágenes con Transición Suave */}
+            {/* Carrusel de Imágenes */}
             <div className="md:w-3/5 bg-neutral-950 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] overflow-hidden">
               <img 
                 src={selectedPost.images[currentImageIndex]} 
@@ -285,7 +298,7 @@ export default function Portfolio() {
                 }`}
               />
 
-              {/* Botones de navegación Anterior / Siguiente */}
+              {/* Botones de navegación */}
               {selectedPost.images.length > 1 && (
                 <>
                   <button 
@@ -301,7 +314,7 @@ export default function Portfolio() {
                     ❯
                   </button>
 
-                  {/* Indicadores de Puntos (Dots) interactivos */}
+                  {/* Indicadores de Puntos */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm z-20">
                     {selectedPost.images.map((_, idx) => (
                       <button 
@@ -318,11 +331,10 @@ export default function Portfolio() {
               )}
             </div>
 
-            {/* Panel de Detalles (Derecha) */}
+            {/* Panel de Detalles */}
             <div className="md:w-2/5 flex flex-col bg-neutral-950 border-t md:border-t-0 md:border-l border-neutral-800 max-h-[50vh] md:max-h-auto justify-between">
               
               <div>
-                {/* Cabecera del Post */}
                 <div className="flex items-center gap-3 p-4 border-b border-neutral-800">
                   <div className="w-8 h-8 rounded-full overflow-hidden bg-neutral-800">
                     <img src="https://i.ibb.co/C3yX9175/A-1.jpg" alt="Avatar" className="w-full h-full object-cover"/>
@@ -333,7 +345,6 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* Descripción */}
                 <div className="p-4 space-y-4 text-sm overflow-y-auto">
                   <div className="flex gap-3 items-start">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-neutral-800 flex-shrink-0">
@@ -352,7 +363,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Botón de Cotización */}
               <div className="p-4 border-t border-neutral-800 bg-black">
                 <button 
                   onClick={() => alert(`Iniciando cotización para: ${selectedPost.title}`)}
