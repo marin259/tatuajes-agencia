@@ -68,7 +68,7 @@ export default function Blog() {
                     alt={article.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                   />
-                  <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-xs px-3 py-1 rounded-full border border-neutral-800">
+                  <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-xs px-3 py-1 rounded-full border border-neutral-800 z-10">
                     {article.category}
                   </span>
                 </div>
