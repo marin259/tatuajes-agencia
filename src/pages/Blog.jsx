@@ -54,27 +54,6 @@ export default function Blog() {
           </p>
         </div>
 
-        {/* Modal de Lectura si se selecciona un artículo */}
-        {selectedArticle && (
-          <div className="mb-12 bg-neutral-900 border border-red-900/50 rounded-2xl p-6 sm:p-8 relative shadow-2xl">
-            <button 
-              onClick={() => setSelectedArticle(null)}
-              className="absolute top-6 right-6 text-neutral-400 hover:text-white bg-neutral-950 px-3 py-1.5 rounded-lg border border-neutral-800 text-xs font-semibold transition-colors cursor-pointer"
-            >
-              Cerrar &times;
-            </button>
-            <span className="text-red-500 text-xs font-bold tracking-widest uppercase">
-              {selectedArticle.category} &bull; {selectedArticle.date}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-4">
-              {selectedArticle.title}
-            </h2>
-            <p className="text-neutral-300 leading-relaxed text-base sm:text-lg">
-              {selectedArticle.content}
-            </p>
-          </div>
-        )}
-
         {/* Cuadrícula de Artículos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogArticles.map((article) => (
@@ -118,6 +97,76 @@ export default function Blog() {
             </div>
           ))}
         </div>
+
+        {/* Modal de Lectura Minimalista */}
+        {selectedArticle && (
+          <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            
+            <div className="bg-neutral-950 border border-neutral-900 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overflow-hidden my-auto">
+              
+              {/* Botón Cerrar Minimalista */}
+              <button 
+                onClick={() => setSelectedArticle(null)}
+                className="absolute top-4 right-4 z-20 text-neutral-400 hover:text-white bg-neutral-900/80 hover:bg-neutral-800 w-8 h-8 rounded-full flex items-center justify-center text-sm font-light transition cursor-pointer"
+                aria-label="Cerrar modal"
+              >
+                ✕
+              </button>
+
+              {/* Contenido scrolleable del artículo */}
+              <div className="p-6 sm:p-10 overflow-y-auto space-y-6">
+                
+                {/* Metadatos superiores */}
+                <div className="flex items-center gap-3 text-xs tracking-widest text-neutral-400 uppercase">
+                  <span className="text-red-500 font-semibold">{selectedArticle.category}</span>
+                  <span>•</span>
+                  <span>{selectedArticle.date}</span>
+                  <span>•</span>
+                  <span>{selectedArticle.readTime}</span>
+                </div>
+
+                {/* Título Principal */}
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-snug">
+                  {selectedArticle.title}
+                </h2>
+
+                {/* Imagen del artículo */}
+                {selectedArticle.image && (
+                  <div className="w-full h-56 sm:h-72 rounded-xl overflow-hidden bg-neutral-900 border border-neutral-900 my-4">
+                    <img 
+                      src={selectedArticle.image} 
+                      alt={selectedArticle.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* Texto del artículo / Cuerpo */}
+                <div className="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed font-light">
+                  <p className="text-neutral-200 font-normal">
+                    {selectedArticle.excerpt}
+                  </p>
+                  <p>
+                    {selectedArticle.content}
+                  </p>
+                </div>
+
+                {/* Pie de artículo minimalista */}
+                <div className="pt-6 border-t border-neutral-900 flex items-center justify-between text-xs text-neutral-500">
+                  <span>Escrito por asu_arttattoo</span>
+                  <button 
+                    onClick={() => setSelectedArticle(null)}
+                    className="hover:text-white transition cursor-pointer underline"
+                  >
+                    Volver al blog
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
