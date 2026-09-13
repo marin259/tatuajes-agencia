@@ -36,71 +36,137 @@ const blogArticles = [
 
 export default function Blog() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('Todos');
+
+  // Filtrar artículos según la categoría seleccionada en el aside
+  const filteredArticles = activeCategory === 'Todos' 
+    ? blogArticles 
+    : blogArticles.filter(art => art.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Encabezado Estilo Editorial */}
+        {/* Encabezado Principal */}
         <div className="border-b border-neutral-900 pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-red-500 text-xs font-mono tracking-widest uppercase">
-              // Revista & Cultura
+            <span className="text-red-500 text-xs font-semibold tracking-widest uppercase">
+              Consejos & Cultura
             </span>
-            <h1 className="text-4xl sm:text-5xl font-light tracking-tight mt-2 text-white font-serif">
-              Blog & Cuidados
+            <h1 className="text-4xl sm:text-5xl font-black tracking-tight mt-2 text-white">
+              BLOG & CUIDADOS
             </h1>
           </div>
-          <p className="text-neutral-400 text-sm max-w-md font-light">
-            Artículos seleccionados sobre el cuidado de tu piel y la cultura detrás de cada pieza de tinta.
+          <p className="text-neutral-400 text-sm max-w-md font-normal leading-relaxed">
+            Información profesional para proteger tu piel y entender el arte corporal de la mano de nuestros expertos.
           </p>
         </div>
 
-        {/* Lista de Artículos en formato Editorial / Horizontal */}
-        <div className="space-y-6">
-          {blogArticles.map((article, index) => (
-            <article 
-              key={article.id}
-              onClick={() => setSelectedArticle(article)}
-              className="group bg-neutral-900/40 hover:bg-neutral-900 border border-neutral-900 hover:border-neutral-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 cursor-pointer flex flex-col md:flex-row gap-6 md:gap-8 items-center"
-            >
-              {/* Imagen miniatura lateral */}
-              <div className="w-full md:w-64 h-48 rounded-xl overflow-hidden bg-neutral-950 relative flex-shrink-0">
-                <img 
-                  src={article.image} 
-                  alt={article.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                />
-                <span className="absolute top-3 left-3 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border border-neutral-800">
-                  {article.category}
-                </span>
+        {/* Estructura Principal con Grid (Contenido + Aside) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+          
+          {/* Columna de Artículos (Ocupa 2 columnas en pantallas grandes) */}
+          <div className="lg:col-span-2 space-y-6">
+            {filteredArticles.length > 0 ? (
+              filteredArticles.map((article, index) => (
+                <article 
+                  key={article.id}
+                  onClick={() => setSelectedArticle(article)}
+                  className="group bg-neutral-900/40 hover:bg-neutral-900 border border-neutral-900 hover:border-neutral-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 cursor-pointer flex flex-col sm:flex-row gap-6 items-center"
+                >
+                  {/* Imagen miniatura lateral */}
+                  <div className="w-full sm:w-56 h-44 rounded-xl overflow-hidden bg-neutral-950 relative flex-shrink-0">
+                    <img 
+                      src={article.image} 
+                      alt={article.title} 
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    />
+                    <span className="absolute top-3 left-3 bg-neutral-950/80 backdrop-blur-md text-neutral-300 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border border-neutral-800 z-10">
+                      {article.category}
+                    </span>
+                  </div>
+
+                  {/* Información del artículo */}
+                  <div className="flex-1 flex flex-col justify-between space-y-3 w-full">
+                    <div className="flex items-center gap-3 text-xs text-neutral-500 font-medium">
+                      <span>0{index + 1}</span>
+                      <span>—</span>
+                      <span>{article.date}</span>
+                      <span>•</span>
+                      <span>{article.readTime}</span>
+                    </div>
+
+                    <h2 className="text-xl font-bold text-white group-hover:text-red-500 transition-colors leading-snug">
+                      {article.title}
+                    </h2>
+
+                    <p className="text-neutral-400 text-sm font-normal leading-relaxed line-clamp-2">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="pt-2 flex items-center text-xs font-semibold text-neutral-300 group-hover:text-white gap-2">
+                      <span>Leer historia completa</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <div className="text-center py-12 text-neutral-500 text-sm">
+                No hay artículos en esta categoría.
               </div>
+            )}
+          </div>
 
-              {/* Información del artículo */}
-              <div className="flex-1 flex flex-col justify-between space-y-3">
-                <div className="flex items-center gap-3 text-xs text-neutral-500 font-mono">
-                  <span>0{index + 1}</span>
-                  <span>—</span>
-                  <span>{article.date}</span>
-                  <span>•</span>
-                  <span>{article.readTime}</span>
-                </div>
-
-                <h2 className="text-xl sm:text-2xl font-medium text-white group-hover:text-red-500 transition-colors leading-snug">
-                  {article.title}
-                </h2>
-
-                <p className="text-neutral-400 text-sm font-light leading-relaxed line-clamp-2">
-                  {article.excerpt}
-                </p>
-
-                <div className="pt-2 flex items-center text-xs font-medium text-neutral-300 group-hover:text-white gap-2">
-                  <span>Leer historia completa</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+          {/* ASIDE LATERAL (Barra de navegación y widgets de utilidad) */}
+          <aside className="space-y-8 lg:sticky lg:top-8">
+            
+            {/* Widget de Categorías */}
+            <div className="bg-neutral-900/50 border border-neutral-900 rounded-2xl p-6">
+              <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 pb-3 border-b border-neutral-800">
+                Filtrar por Categoría
+              </h3>
+              <div className="flex flex-wrap lg:flex-col gap-2">
+                {['Todos', 'Cuidados', 'Diseño', 'Consejos'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer flex items-center justify-between ${
+                      activeCategory === cat 
+                        ? 'bg-red-600 text-white shadow-lg' 
+                        : 'bg-neutral-950/60 text-neutral-400 hover:text-white hover:bg-neutral-900'
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    <span className="text-xs opacity-70">
+                      {cat === 'Todos' ? blogArticles.length : blogArticles.filter(a => a.category === cat).length}
+                    </span>
+                  </button>
+                ))}
               </div>
-            </article>
-          ))}
+            </div>
+
+            {/* Widget de Asesoría / CTA */}
+            <div className="bg-gradient-to-br from-neutral-900 to-red-950/30 border border-neutral-900 rounded-2xl p-6 text-center space-y-4">
+              <span className="text-red-500 text-xs font-semibold tracking-widest uppercase">
+                Estudio Residente
+              </span>
+              <h4 className="text-white font-bold text-lg leading-snug">
+                ¿Listo para tu próxima pieza de arte?
+              </h4>
+              <p className="text-neutral-400 text-xs leading-relaxed">
+                Agenda tu asesoría personalizada con nuestros artistas y plasma tu historia en la piel.
+              </p>
+              <a 
+                href="#reservar" 
+                className="inline-block w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs uppercase tracking-wider py-3 rounded-xl transition-colors shadow-lg"
+              >
+                Reservar Cita Ahora
+              </a>
+            </div>
+
+          </aside>
+
         </div>
 
         {/* Modal de Lectura Minimalista */}
@@ -122,8 +188,8 @@ export default function Blog() {
               <div className="p-6 sm:p-10 overflow-y-auto space-y-6">
                 
                 {/* Metadatos superiores */}
-                <div className="flex items-center gap-3 text-xs tracking-widest text-neutral-400 uppercase">
-                  <span className="text-red-500 font-semibold">{selectedArticle.category}</span>
+                <div className="flex items-center gap-3 text-xs tracking-widest text-neutral-400 uppercase font-semibold">
+                  <span className="text-red-500">{selectedArticle.category}</span>
                   <span>•</span>
                   <span>{selectedArticle.date}</span>
                   <span>•</span>
@@ -147,8 +213,8 @@ export default function Blog() {
                 )}
 
                 {/* Texto del artículo / Cuerpo */}
-                <div className="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed font-light">
-                  <p className="text-neutral-200 font-normal">
+                <div className="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed font-normal">
+                  <p className="text-neutral-200">
                     {selectedArticle.excerpt}
                   </p>
                   <p>
@@ -157,7 +223,7 @@ export default function Blog() {
                 </div>
 
                 {/* Pie de artículo minimalista */}
-                <div className="pt-6 border-t border-neutral-900 flex items-center justify-between text-xs text-neutral-500">
+                <div className="pt-6 border-t border-neutral-900 flex items-center justify-between text-xs text-neutral-500 font-medium">
                   <span>Escrito por asu_arttattoo</span>
                   <button 
                     onClick={() => setSelectedArticle(null)}
