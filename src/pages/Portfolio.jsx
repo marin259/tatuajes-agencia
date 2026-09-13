@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const tattooItems = [
   // --- ANIME ---
@@ -160,6 +160,21 @@ export default function Portfolio() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isGridAnimating, setIsGridAnimating] = useState(false);
 
+  // Leer la URL al cargar la página para saber si hay un post abierto
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('post');
+    if (postId) {
+      const found = tattooItems.find(item => item.id.toString() === postId);
+      if (found) {
+        setSelectedPost(found);
+        requestAnimationFrame(() => {
+          setIsModalOpen(true);
+        });
+      }
+    }
+  }, []);
+
   const filteredTattoos = activeCategory === 'Todos'
     ? tattooItems
     : tattooItems.filter(item => item.category === activeCategory);
@@ -167,12 +182,9 @@ export default function Portfolio() {
   const handleCategoryChange = (category) => {
     if (category === activeCategory) return;
     
-    // Inicia el desvanecimiento de salida
     setIsGridAnimating(true);
-
     setTimeout(() => {
       setActiveCategory(category);
-      // Breve pausa y activa la entrada de la nueva categoría
       setTimeout(() => {
         setIsGridAnimating(false);
       }, 50);
@@ -182,6 +194,11 @@ export default function Portfolio() {
   const handleOpenPost = (tattoo) => {
     setSelectedPost(tattoo);
     setCurrentImageIndex(0);
+
+    // Actualizar la URL agregando el parámetro ?post=ID sin recargar la página
+    const newUrl = `${window.location.pathname}?post=${tattoo.id}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     requestAnimationFrame(() => {
       setIsModalOpen(true);
     });
@@ -189,6 +206,11 @@ export default function Portfolio() {
 
   const handleClosePost = () => {
     setIsModalOpen(false);
+
+    // Limpiar el parámetro ?post= de la URL al cerrar el modal
+    const newUrl = window.location.pathname;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     setTimeout(() => {
       setSelectedPost(null);
     }, 400);
@@ -260,7 +282,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid de Publicaciones con Transición Suave de Categoría */}
+        {/* Grid de Publicaciones */}
         <div className={`grid grid-cols-3 gap-1 sm:gap-4 transition-all duration-300 ease-out transform ${
           isGridAnimating ? 'opacity-0 translate-y-3 scale-98' : 'opacity-100 translate-y-0 scale-100'
         }`}>
@@ -291,7 +313,7 @@ export default function Portfolio() {
 
       </div>
 
-      {/* Modal con Transición Fluida */}
+      {/* Modal */}
       {selectedPost && (
         <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 transition-all duration-400 ease-out ${
           isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -318,7 +340,6 @@ export default function Portfolio() {
                 }`}
               />
 
-              {/* Botones de navegación */}
               {selectedPost.images.length > 1 && (
                 <>
                   <button 
@@ -334,7 +355,6 @@ export default function Portfolio() {
                     ❯
                   </button>
 
-                  {/* Indicadores de Puntos */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm z-20">
                     {selectedPost.images.map((_, idx) => (
                       <button 
