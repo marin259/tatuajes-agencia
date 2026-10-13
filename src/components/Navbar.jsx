@@ -27,29 +27,14 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           </span>
         </div>
 
-        {/* Botón de Hamburguesa para Móvil y Celulares en Horizontal */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-neutral-300 hover:text-white focus:outline-none p-2 cursor-pointer"
-          aria-label="Abrir menú"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {isOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-
-        {/* Navegación para Escritorio / Pantallas Grandes */}
-        <nav className="hidden lg:flex items-center gap-2">
+        {/* NAVEGACIÓN PARA ESCRITORIO (Estilo Minimalista & Mayúsculas) */}
+        <nav className="hidden lg:flex items-center gap-6 text-xs font-bold uppercase tracking-wider">
           <button
             onClick={() => handleNavClick('home')}
-            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+            className={`transition-colors cursor-pointer py-2 ${
               currentTab === 'home'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+                ? 'text-red-500 border-b-2 border-red-500'
+                : 'text-neutral-300 hover:text-white'
             }`}
           >
             Inicio
@@ -57,10 +42,10 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
           <button
             onClick={() => handleNavClick('portfolio')}
-            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+            className={`transition-colors cursor-pointer py-2 ${
               currentTab === 'portfolio'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+                ? 'text-red-500 border-b-2 border-red-500'
+                : 'text-neutral-300 hover:text-white'
             }`}
           >
             Portafolio
@@ -68,10 +53,10 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           
           <button
             onClick={() => handleNavClick('blog')}
-            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+            className={`transition-colors cursor-pointer py-2 ${
               currentTab === 'blog'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+                ? 'text-red-500 border-b-2 border-red-500'
+                : 'text-neutral-300 hover:text-white'
             }`}
           >
             Blog & Cuidados
@@ -79,10 +64,10 @@ export default function Navbar({ currentTab, setCurrentTab }) {
 
           <button
             onClick={() => handleNavClick('booking')}
-            className={`px-4 py-1.5 rounded text-sm font-semibold transition-colors cursor-pointer ${
+            className={`px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               currentTab === 'booking' 
-                ? 'bg-red-600 text-white shadow-md shadow-red-900/30' 
-                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+                ? 'bg-red-600 text-white shadow-lg shadow-red-900/40' 
+                : 'bg-neutral-900 text-neutral-200 hover:bg-neutral-800 border border-neutral-800'
             }`}
           >
             Reservar Cita
@@ -90,74 +75,86 @@ export default function Navbar({ currentTab, setCurrentTab }) {
           
           <button
             onClick={() => handleNavClick('admin')}
-            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+            className={`transition-colors cursor-pointer py-2 ${
               currentTab === 'admin'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+                ? 'text-red-500 border-b-2 border-red-500'
+                : 'text-neutral-400 hover:text-white'
             }`}
           >
-            Admin Panel
+            Admin
+          </button>
+
+          {/* Botón Circular Hamburguesa Estilo Profile */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-10 h-10 rounded-full bg-white text-neutral-950 flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer ml-2"
+            aria-label="Abrir menú"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
           </button>
         </nav>
 
+        {/* Botón de Hamburguesa para Móvil */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden w-10 h-10 rounded-full bg-white text-neutral-950 flex items-center justify-center shadow-md cursor-pointer"
+          aria-label="Abrir menú"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+          </svg>
+        </button>
+
       </div>
 
-      {/* Menú desplegable para Móvil y Horizontal */}
+      {/* Menú Desplegable (Overlay estilo Panel) */}
       {isOpen && (
-        <nav className="lg:hidden mt-4 pt-4 border-t border-neutral-800 flex flex-col gap-2">
+        <nav className="absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 p-6 flex flex-col gap-3 shadow-2xl lg:hidden">
           <button
             onClick={() => handleNavClick('home')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
-              currentTab === 'home'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300'
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              currentTab === 'home' ? 'bg-red-600 text-white' : 'text-neutral-300 hover:bg-neutral-800'
             }`}
           >
-            Inicio
+            INICIO
           </button>
 
           <button
             onClick={() => handleNavClick('portfolio')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
-              currentTab === 'portfolio'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300'
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              currentTab === 'portfolio' ? 'bg-red-600 text-white' : 'text-neutral-300 hover:bg-neutral-800'
             }`}
           >
-            Portafolio
+            PORTAFOLIO
           </button>
           
           <button
             onClick={() => handleNavClick('blog')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
-              currentTab === 'blog'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300'
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              currentTab === 'blog' ? 'bg-red-600 text-white' : 'text-neutral-300 hover:bg-neutral-800'
             }`}
           >
-            Blog & Cuidados
+            BLOG & CUIDADOS
           </button>
 
           <button
             onClick={() => handleNavClick('booking')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-semibold transition-colors cursor-pointer ${
-              currentTab === 'booking' 
-                ? 'bg-red-600 text-white' 
-                : 'bg-neutral-900 text-neutral-300'
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              currentTab === 'booking' ? 'bg-red-600 text-white' : 'text-neutral-300 hover:bg-neutral-800'
             }`}
           >
-            Reservar Cita
+            RESERVAR CITA
           </button>
           
           <button
             onClick={() => handleNavClick('admin')}
-            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
-              currentTab === 'admin'
-                ? 'bg-neutral-200 text-neutral-950 font-semibold'
-                : 'bg-neutral-900 text-neutral-300'
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${
+              currentTab === 'admin' ? 'bg-red-600 text-white' : 'text-neutral-300 hover:bg-neutral-800'
             }`}
           >
-            Admin Panel
+            ADMIN PANEL
           </button>
         </nav>
       )}
