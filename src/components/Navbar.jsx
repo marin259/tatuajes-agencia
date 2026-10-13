@@ -1,151 +1,165 @@
 import React, { useState } from 'react';
 
 export default function Navbar({ currentTab, setCurrentTab }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavClick = (tab) => {
+    setCurrentTab(tab);
+    setIsOpen(false);
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800/60 px-6 py-4 transition-colors">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-4 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
         
-        {/* Logo */}
-        <button 
-          onClick={() => setCurrentTab('home')}
-          className="flex items-center gap-2 cursor-pointer focus:outline-none"
+        {/* LOGO Y MARCA */}
+        <div 
+          onClick={() => handleNavClick('home')} 
+          className="cursor-pointer flex items-center gap-3 group"
         >
-          <span className="text-xl font-black tracking-wider text-white">
-            INK<span className="text-red-500">STUDIO</span>
+          <img 
+            src="https://i.ibb.co/zhC53H6n/Recurso-1-300x.png" 
+            alt="ASU_ARTATTOO Logo" 
+            className="w-9 h-9 object-contain rounded-full bg-neutral-900 p-1 border border-neutral-800 group-hover:border-neutral-700 transition-colors"
+          />
+          <span className="text-white font-bold text-lg tracking-wider">
+            ASU_ARTATTOO
           </span>
+        </div>
+
+        {/* Botón de Hamburguesa para Móvil y Celulares en Horizontal */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-neutral-300 hover:text-white focus:outline-none p-2 cursor-pointer"
+          aria-label="Abrir menú"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
         </button>
 
-        {/* Enlaces Principales (Desktop) */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-neutral-300">
+        {/* Navegación para Escritorio / Pantallas Grandes */}
+        <nav className="hidden lg:flex items-center gap-2">
+          <button
+            onClick={() => handleNavClick('home')}
+            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'home'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+            }`}
+          >
+            Inicio
+          </button>
+
+          <button
+            onClick={() => handleNavClick('portfolio')}
+            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'portfolio'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
+            }`}
+          >
+            Portafolio
+          </button>
           
-          {/* Item con Dropdown (Ejemplo: Estilos / Categorías) */}
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer py-2"
-            >
-              ESTILOS
-              <svg 
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180 text-red-500' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {/* Submenú Desplegable */}
-            {isDropdownOpen && (
-              <div 
-                onMouseLeave={() => setIsDropdownOpen(false)}
-                className="absolute top-full left-0 w-48 bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl py-2 mt-1 z-50"
-              >
-                <button 
-                  onClick={() => { setCurrentTab('portfolio'); setIsDropdownOpen(false); }}
-                  className="w-full text-left px-4 py-2.5 text-xs text-neutral-300 hover:bg-neutral-800 hover:text-red-400 transition-colors"
-                >
-                  Anime & Otaku
-                </button>
-                <button 
-                  onClick={() => { setCurrentTab('portfolio'); setIsDropdownOpen(false); }}
-                  className="w-full text-left px-4 py-2.5 text-xs text-neutral-300 hover:bg-neutral-800 hover:text-red-400 transition-colors"
-                >
-                  Surrealismo & Grises
-                </button>
-                <button 
-                  onClick={() => { setCurrentTab('portfolio'); setIsDropdownOpen(false); }}
-                  className="w-full text-left px-4 py-2.5 text-xs text-neutral-300 hover:bg-neutral-800 hover:text-red-400 transition-colors"
-                >
-                  Piezas Grandes / Espaldas
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Enlaces Simples con Estado Activo Típico (Píldora u Opcional) */}
           <button
-            onClick={() => setCurrentTab('portfolio')}
-            className={`transition-colors cursor-pointer ${
-              currentTab === 'portfolio' ? 'text-red-500 font-extrabold' : 'hover:text-white'
+            onClick={() => handleNavClick('blog')}
+            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'blog'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
             }`}
           >
-            PORTAFOLIO
+            Blog & Cuidados
           </button>
 
           <button
-            onClick={() => setCurrentTab('booking')}
-            className={`transition-colors cursor-pointer ${
-              currentTab === 'booking' ? 'text-red-500 font-extrabold' : 'hover:text-white'
+            onClick={() => handleNavClick('booking')}
+            className={`px-4 py-1.5 rounded text-sm font-semibold transition-colors cursor-pointer ${
+              currentTab === 'booking' 
+                ? 'bg-red-600 text-white shadow-md shadow-red-900/30' 
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
             }`}
           >
-            RESERVAR CITA
+            Reservar Cita
           </button>
-
+          
           <button
-            onClick={() => setCurrentTab('blog')}
-            className={`transition-colors cursor-pointer ${
-              currentTab === 'blog' ? 'text-red-500 font-extrabold' : 'hover:text-white'
+            onClick={() => handleNavClick('admin')}
+            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'admin'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white border border-neutral-800'
             }`}
           >
-            BLOG & CUIDADOS
-          </button>
-
-          {/* Botón Circular Hamburguesa (Estilo Profile) */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-9 h-9 rounded-full bg-white text-neutral-950 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer ml-2"
-            aria-label="Abrir menú"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            Admin Panel
           </button>
         </nav>
 
-        {/* Botón Hamburguesa para vista Móvil */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden w-9 h-9 rounded-full bg-white text-neutral-950 flex items-center justify-center cursor-pointer"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
       </div>
 
-      {/* Menú Desplegable Completo / Overlay del Botón Hamburguesa */}
-      {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 p-6 flex flex-col gap-4 shadow-2xl">
-          <button 
-            onClick={() => { setCurrentTab('home'); setIsMenuOpen(false); }}
-            className="text-left font-bold text-sm text-neutral-200 hover:text-red-500"
+      {/* Menú desplegable para Móvil y Horizontal */}
+      {isOpen && (
+        <nav className="lg:hidden mt-4 pt-4 border-t border-neutral-800 flex flex-col gap-2">
+          <button
+            onClick={() => handleNavClick('home')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'home'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
           >
-            INICIO
+            Inicio
           </button>
-          <button 
-            onClick={() => { setCurrentTab('portfolio'); setIsMenuOpen(false); }}
-            className="text-left font-bold text-sm text-neutral-200 hover:text-red-500"
+
+          <button
+            onClick={() => handleNavClick('portfolio')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'portfolio'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
           >
-            PORTAFOLIO
+            Portafolio
           </button>
-          <button 
-            onClick={() => { setCurrentTab('booking'); setIsMenuOpen(false); }}
-            className="text-left font-bold text-sm text-neutral-200 hover:text-red-500"
+          
+          <button
+            onClick={() => handleNavClick('blog')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'blog'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
           >
-            RESERVAR CITA
+            Blog & Cuidados
           </button>
-          <button 
-            onClick={() => { setCurrentTab('blog'); setIsMenuOpen(false); }}
-            className="text-left font-bold text-sm text-neutral-200 hover:text-red-500"
+
+          <button
+            onClick={() => handleNavClick('booking')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-semibold transition-colors cursor-pointer ${
+              currentTab === 'booking' 
+                ? 'bg-red-600 text-white' 
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
           >
-            CUIDADOS Y BLOG
+            Reservar Cita
           </button>
-        </div>
+          
+          <button
+            onClick={() => handleNavClick('admin')}
+            className={`w-full text-left px-4 py-2.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+              currentTab === 'admin'
+                ? 'bg-neutral-200 text-neutral-950 font-semibold'
+                : 'bg-neutral-900 text-neutral-300'
+            }`}
+          >
+            Admin Panel
+          </button>
+        </nav>
       )}
     </header>
   );
